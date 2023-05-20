@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.register.RegisterActivity">
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="191dp"
+        android:text="@string/tvRegister_txt"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRegisterDescription"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/tvRegisterDescription_txt"
+        app:layout_constraintStart_toStartOf="@+id/tvRegister"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
+
+    <EditText
+        android:id="@+id/edFulllNameRegister"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/edFullName_txt"
+        app:layout_constraintEnd_toEndOf="@+id/tvRegisterDescription"
+        app:layout_constraintStart_toStartOf="@+id/tvRegisterDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegisterDescription" />
+
+    <com.example.pasin_app.custom_view.EmailEditText
+        android:id="@+id/edEmailRegister"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/edEmailRegister_txt"
+        app:layout_constraintEnd_toEndOf="@+id/edFulllNameRegister"
+        app:layout_constraintStart_toStartOf="@+id/edFulllNameRegister"
+        app:layout_constraintTop_toBottomOf="@+id/edFulllNameRegister" />
+
+    <com.example.pasin_app.custom_view.RegisterPasswordEditText
+        android:id="@+id/edPasswordRegister"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/edPassword_txt"
+        app:layout_constraintEnd_toEndOf="@+id/edEmailRegister"
+        app:layout_constraintStart_toStartOf="@+id/edEmailRegister"
+        app:layout_constraintTop_toBottomOf="@+id/edEmailRegister" />
+
+    <com.example.pasin_app.custom_view.RegisterPasswordEditText
+        android:id="@+id/edConfirmPasswordRegister"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/edConfirmPassword_txt"
+        app:layout_constraintEnd_toEndOf="@+id/edPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/edPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/edPasswordRegister" />
+
+    <TextView
+        android:id="@+id/tvSudahPunyaAkun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:text="@string/tvSudahPunyaAkun_txt"
+        app:layout_constraintStart_toStartOf="@+id/edConfirmPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/edConfirmPasswordRegister" />
+
+    <TextView
+        android:id="@+id/tvKlikDisini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvKlikDisini_txt"
+        app:layout_constraintStart_toStartOf="@+id/tvSudahPunyaAkun"
+        app:layout_constraintTop_toBottomOf="@+id/tvSudahPunyaAkun" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btnRegister_txt"
+        android:layout_marginTop="159dp"
+        app:layout_constraintEnd_toEndOf="@+id/edConfirmPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/tvKlikDisini"
+        app:layout_constraintTop_toBottomOf="@+id/tvKlikDisini" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
