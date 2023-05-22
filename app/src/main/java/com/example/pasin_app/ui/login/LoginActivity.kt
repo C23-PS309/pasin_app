@@ -38,13 +38,5 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-        // Button ke register
-        val startRegisterActivity = View.OnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
-        }
-        binding.tvDontHaveAccount.setOnClickListener(startRegisterActivity)
-        binding.tvKlikDisini.setOnClickListener(startRegisterActivity)
     }
 }
