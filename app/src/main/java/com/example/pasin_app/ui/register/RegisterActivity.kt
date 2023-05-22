@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.edEmailRegister.error = "Kosong"
                 }
                 if (passwordUser.isEmpty()) {
-                    binding.edPasswordRegister.error = "Kosong"
+                    binding.edPasswordRegister.error = "Password Kosong"
                 }
                 if (confirmPasswordUser.isEmpty()) {
                     binding.edConfirmPasswordRegister.error = "Konfirmasi Password tidak boleh kosong"
