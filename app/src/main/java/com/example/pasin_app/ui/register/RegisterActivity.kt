@@ -48,6 +48,5 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
         binding.tvSudahPunyaAkun.setOnClickListener(startLoginActivity)
-        binding.tvKlikDisini.setOnClickListener(startLoginActivity)
     }
 }
