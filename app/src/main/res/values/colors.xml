@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Color Palette -->
+    <color name="yellow">#FEFF86</color>
+    <color name="light_blue">#B0DAFF</color>
+    <color name="blue">#19A7CE</color>
+    <color name="dark_blue">#146C94</color>
 </resources>
