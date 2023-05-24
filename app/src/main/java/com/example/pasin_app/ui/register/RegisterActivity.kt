@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityRegisterBinding
 import com.example.pasin_app.ui.login.LoginActivity
@@ -24,10 +25,12 @@ class RegisterActivity : AppCompatActivity() {
 
             if (emailUser.isEmpty() || passwordUser.isEmpty() || confirmPasswordUser.isEmpty()) {
                 if (emailUser.isEmpty()) {
-                    binding.edEmailRegister.error = "Kosong"
+                    binding.edEmailRegister.error = "Email tidak boleh kosong"
+                    Toast.makeText(this, "Emailnya diisi dong!", Toast.LENGTH_SHORT).show()
                 }
                 if (passwordUser.isEmpty()) {
                     binding.edPasswordRegister.error = "Password tidak boleh kosong"
+                    Toast.makeText(this, "Passwordnya diisi dong!", Toast.LENGTH_SHORT).show()
                 }
                 if (confirmPasswordUser.isEmpty()) {
                     binding.edConfirmPasswordRegister.error = "Konfirmasi Password tidak boleh kosong"
