@@ -18,4 +18,7 @@
     <string name="edEmailLogin_txt">Email</string>
     <string name="edConfirmPassword_txt">Confirm Password</string>
     <string name="tvDontHaveAccount_txt">Belum punya akun ?</string>
+    <string name="tvContinueWith_txt">* Or Continue With *</string>
+    <string name="tvContinuingWithGoogle_txt">By Continuing you agree to our</string>
+    <string name="tvTermsAndConditions_txt">terms and conditions</string>
 </resources>

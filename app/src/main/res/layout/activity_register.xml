@@ -6,12 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.register.RegisterActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_banner_atas"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/Background_atas"
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            android:scaleType="center"
+            android:src="@drawable/background_atas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="58dp"
         android:text="@string/tvRegister_txt"
+        android:elevation="10dp"
+        android:textColor="@color/white"
         android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/tvRegisterDescription"
@@ -23,6 +46,8 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:elevation="10dp"
+        android:textColor="@color/white"
         android:text="@string/tvRegisterDescription_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,13 +57,13 @@
         android:id="@+id/edFulllNameRegister"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
 
         android:outlineProvider="background"
         android:elevation="6dp"
         android:background="@drawable/shape_edit_text"
         android:padding="13dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
 
         android:inputType="text"
         android:hint="@string/edFullName_txt"
@@ -57,7 +82,7 @@
         android:elevation="6dp"
         android:background="@drawable/shape_edit_text"
         android:padding="13dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
 
         android:inputType="text"
         android:hint="@string/edEmailRegister_txt"
@@ -76,7 +101,7 @@
         android:elevation="6dp"
         android:background="@drawable/shape_edit_text"
         android:padding="13dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
 
         android:inputType="textPassword"
         android:hint="@string/edPassword_txt"
@@ -95,7 +120,7 @@
         android:elevation="6dp"
         android:background="@drawable/shape_edit_text"
         android:padding="13dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
 
         android:inputType="textPassword"
         android:hint="@string/edConfirmPassword_txt"
@@ -107,9 +132,11 @@
         android:id="@+id/tvSudahPunyaAkun"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/tvSudahPunyaAkun_txt"
         android:textSize="15sp"
+        android:elevation="10dp"
+        android:textColor="@color/white"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintStart_toStartOf="@+id/edConfirmPasswordRegister"
@@ -117,16 +144,58 @@
 
     <Button
         android:id="@+id/btnRegister"
+        style="@style/Button_Style_Auth"
         android:layout_width="177dp"
-        android:layout_height="40dp"
-        android:textColor="@color/dark_blue"
+        android:layout_height="50dp"
+        android:layout_marginTop="34dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/btnRegister_txt"
-        android:layout_marginTop="130dp"
-        style="@style/Button_Style_Auth"
+        android:textColor="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintStart_toStartOf="@+id/tvSudahPunyaAkun"
         app:layout_constraintTop_toBottomOf="@+id/tvSudahPunyaAkun" />
+
+    <TextView
+        android:id="@+id/tvContinueWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="@string/tvContinueWith_txt"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvContinuingWithGoogle"
+        app:layout_constraintEnd_toEndOf="@+id/tvContinueWith"
+        app:layout_constraintStart_toStartOf="@+id/tvContinueWith"
+        app:srcCompat="@drawable/google_vector" />
+
+    <TextView
+        android:id="@+id/tvContinuingWithGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvContinuingWithGoogle_txt"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/tvTermsAndConditions_txt"
+        android:textColor="@color/red"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
