@@ -7,15 +7,15 @@
     <string name="edUsername_txt">Username</string>
     <string name="edPassword_txt">Password</string>
     <string name="tvLupaPassword_txt">Lupa Password ?</string>
-    <string name="btnLogin_txt">Login</string>
+    <string name="btnLogin_txt">L O G I N</string>
     <string name="tvRegister_txt">Register Account</string>
     <string name="tvRegisterDescription_txt">Silahkan isi data dirinya, agar kamu bisa menggunakan aplikasi kita...</string>
     <string name="edEmailRegister_txt">Email</string>
     <string name="tvSudahPunyaAkun_txt">Sudah punya akun ?</string>
     <string name="tvKlikDisini_txt">Klik disini ...</string>
-    <string name="btnRegister_txt">Register</string>
+    <string name="btnRegister_txt">R E G I S T E R</string>
     <string name="edFullName_txt">Full Name</string>
     <string name="edEmailLogin_txt">Email</string>
     <string name="edConfirmPassword_txt">Confirm Password</string>
-    <string name="tvDontHaveAccount_txt">Tidak punya akun?</string>
+    <string name="tvDontHaveAccount_txt">Belum punya akun ?</string>
 </resources>

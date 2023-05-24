@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityLoginBinding
 import com.example.pasin_app.ui.MainActivity
 import com.example.pasin_app.ui.register.RegisterActivity

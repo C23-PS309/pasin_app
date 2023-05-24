@@ -6,77 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-    <TextView
-        android:id="@+id/tvLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tvLogin_txt"
-        android:layout_marginTop="124dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="215dp"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="124dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/tvLogin_txt"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvLoginDescription"
+            app:layout_constraintStart_toStartOf="@+id/tvLoginDescription"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvLoginDescription"
-        android:layout_width="341dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/tvLoginDescription_txt"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/tvLogin"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+        <TextView
+            android:id="@+id/tvLoginDescription"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/tvLoginDescription_txt"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 
-    <com.example.pasin_app.custom_view.EmailEditText
-        android:id="@+id/edEmailLogin"
-        android:layout_width="341dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:shadowDx="1"
-        android:shadowDy="2"
-        android:shadowColor="@color/black"
-        android:inputType="text"
-        android:background="@drawable/edit_text_shape"
-        android:hint="@string/edEmailLogin_txt"
-        app:layout_constraintEnd_toEndOf="@+id/tvLoginDescription"
-        app:layout_constraintStart_toStartOf="@+id/tvLoginDescription"
-        app:layout_constraintTop_toBottomOf="@+id/tvLoginDescription" />
+        <com.example.pasin_app.custom_view.EmailEditText
+            android:id="@+id/edEmailLogin"
+            android:layout_width="320dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_edit_text"
+            android:padding="13dp"
+            android:outlineProvider="background"
+            android:elevation="6dp"
+            android:fontFamily="@font/roboto_bold"
+            android:hint="@string/edEmailLogin_txt"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/tvLoginDescription"
+            app:layout_constraintStart_toStartOf="@+id/tvLoginDescription"
+            app:layout_constraintTop_toBottomOf="@+id/tvLoginDescription" />
 
-    <com.example.pasin_app.custom_view.LoginPasswordEditText
-        android:id="@+id/edPasswordLogin"
-        android:layout_width="341dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/edPassword_txt"
-        app:layout_constraintEnd_toEndOf="@+id/edEmailLogin"
-        app:layout_constraintStart_toStartOf="@+id/edEmailLogin"
-        app:layout_constraintTop_toBottomOf="@+id/edEmailLogin" />
+        <com.example.pasin_app.custom_view.LoginPasswordEditText
+            android:id="@+id/edPasswordLogin"
+            android:layout_width="320dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/shape_transparent_edit_text"
+            android:padding="13dp"
+            android:outlineProvider="background"
+            android:elevation="6dp"
+            android:fontFamily="@font/roboto_bold"
+            android:hint="@string/edPassword_txt"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/edEmailLogin"
+            app:layout_constraintStart_toStartOf="@+id/edEmailLogin"
+            app:layout_constraintTop_toBottomOf="@+id/edEmailLogin" />
 
-    <TextView
-        android:id="@+id/tvDontHaveAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        android:text="@string/tvDontHaveAccount_txt"
-        app:layout_constraintStart_toStartOf="@+id/edPasswordLogin"
-        app:layout_constraintTop_toBottomOf="@+id/edPasswordLogin" />
+        <TextView
+            android:id="@+id/tvDontHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/tvDontHaveAccount_txt"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/edPasswordLogin"
+            app:layout_constraintTop_toBottomOf="@+id/edPasswordLogin" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:text="@string/btnLogin_txt"
-        app:layout_constraintEnd_toEndOf="@+id/edPasswordLogin"
-        app:layout_constraintStart_toStartOf="@+id/edPasswordLogin"
-        app:layout_constraintTop_toBottomOf="@+id/edPasswordLogin" />
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="135dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="130dp"
+            android:textColor="@color/dark_blue"
+            android:text="@string/btnLogin_txt"
+            android:fontFamily="@font/roboto_bold"
+            style="@style/Button_Style_Auth"
+            app:layout_constraintEnd_toEndOf="@+id/edPasswordLogin"
+            app:layout_constraintStart_toStartOf="@+id/edPasswordLogin"
+            app:layout_constraintTop_toBottomOf="@+id/edPasswordLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

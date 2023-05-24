@@ -8,33 +8,38 @@
 
     <TextView
         android:id="@+id/tvRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="66dp"
-        android:layout_marginEnd="191dp"
         android:text="@string/tvRegister_txt"
         android:textSize="23sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvRegisterDescription"
+        app:layout_constraintStart_toStartOf="@+id/tvRegisterDescription"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvRegisterDescription"
-        android:layout_width="341dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/tvRegisterDescription_txt"
-        app:layout_constraintStart_toStartOf="@+id/tvRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
 
     <EditText
         android:id="@+id/edFulllNameRegister"
-        android:layout_width="341dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:ems="10"
+
+        android:outlineProvider="background"
+        android:elevation="6dp"
+        android:background="@drawable/shape_edit_text"
+        android:padding="13dp"
+        android:fontFamily="@font/roboto_bold"
+
         android:inputType="text"
         android:hint="@string/edFullName_txt"
         app:layout_constraintEnd_toEndOf="@+id/tvRegisterDescription"
@@ -43,10 +48,17 @@
 
     <com.example.pasin_app.custom_view.EmailEditText
         android:id="@+id/edEmailRegister"
-        android:layout_width="341dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
+
+        android:outlineProvider="background"
+        android:elevation="6dp"
+        android:background="@drawable/shape_edit_text"
+        android:padding="13dp"
+        android:fontFamily="@font/roboto_bold"
+
         android:inputType="text"
         android:hint="@string/edEmailRegister_txt"
         app:layout_constraintEnd_toEndOf="@+id/edFulllNameRegister"
@@ -55,10 +67,17 @@
 
     <com.example.pasin_app.custom_view.RegisterPasswordEditText
         android:id="@+id/edPasswordRegister"
-        android:layout_width="341dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
+
+        android:outlineProvider="background"
+        android:elevation="6dp"
+        android:background="@drawable/shape_edit_text"
+        android:padding="13dp"
+        android:fontFamily="@font/roboto_bold"
+
         android:inputType="textPassword"
         android:hint="@string/edPassword_txt"
         app:layout_constraintEnd_toEndOf="@+id/edEmailRegister"
@@ -67,10 +86,17 @@
 
     <com.example.pasin_app.custom_view.RegisterPasswordEditText
         android:id="@+id/edConfirmPasswordRegister"
-        android:layout_width="341dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
+
+        android:outlineProvider="background"
+        android:elevation="6dp"
+        android:background="@drawable/shape_edit_text"
+        android:padding="13dp"
+        android:fontFamily="@font/roboto_bold"
+
         android:inputType="textPassword"
         android:hint="@string/edConfirmPassword_txt"
         app:layout_constraintEnd_toEndOf="@+id/edPasswordRegister"
@@ -79,21 +105,25 @@
 
     <TextView
         android:id="@+id/tvSudahPunyaAkun"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:textStyle="normal"
         android:text="@string/tvSudahPunyaAkun_txt"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintStart_toStartOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintTop_toBottomOf="@+id/edConfirmPasswordRegister" />
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="177dp"
+        android:layout_height="40dp"
+        android:textColor="@color/dark_blue"
+        android:fontFamily="@font/roboto_bold"
         android:text="@string/btnRegister_txt"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="130dp"
+        style="@style/Button_Style_Auth"
         app:layout_constraintEnd_toEndOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintStart_toStartOf="@+id/tvSudahPunyaAkun"
         app:layout_constraintTop_toBottomOf="@+id/tvSudahPunyaAkun" />
