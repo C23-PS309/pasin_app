@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.pasin_app.databinding.ActivityLoginBinding
-import com.example.pasin_app.ui.MainActivity
+import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         // Button Login
         binding.btnLogin.setOnClickListener {
