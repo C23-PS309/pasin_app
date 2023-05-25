@@ -22,4 +22,5 @@
     <string name="tvContinuingWithGoogle_txt">By Continuing you agree to our</string>
     <string name="tvTermsAndConditions_txt">terms and conditions</string>
     <string name="tvRiwayatPengukuran_txt">Riwayat Pengukuran</string>
+    <string name="permission_not_granted">Permission Not Granted</string>
 </resources>

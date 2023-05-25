@@ -6,26 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-    <androidx.cardview.widget.CardView
+    <ImageView
+        android:id="@+id/Background_atas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_background_banner_atas"
-        app:cardCornerRadius="20dp"
+        android:layout_height="520dp"
+        android:scaleType="center"
+        android:background="@drawable/shape_background_banner_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/Background_atas"
-            android:layout_width="match_parent"
-            android:layout_height="520dp"
-            android:scaleType="center"
-            android:src="@drawable/background_atas"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvLogin"
@@ -85,9 +74,9 @@
         android:inputType="textPassword"
         android:outlineProvider="background"
         android:padding="13dp"
+        android:text="contoh123"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:text="contoh123"
         app:layout_constraintEnd_toEndOf="@+id/edEmailLogin"
         app:layout_constraintStart_toStartOf="@+id/edEmailLogin"
         app:layout_constraintTop_toBottomOf="@+id/edEmailLogin" />
@@ -100,8 +89,8 @@
         android:elevation="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/tvDontHaveAccount_txt"
-        android:textSize="15sp"
         android:textColor="@color/white"
+        android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/edPasswordLogin"
         app:layout_constraintStart_toStartOf="@+id/edPasswordLogin"

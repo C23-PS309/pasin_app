@@ -20,7 +20,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="670dp"
-        android:background="@drawable/shape_background_banner_atas"
+        android:background="@drawable/shape_background_banner_home"
         android:elevation="8dp"
         android:foregroundGravity="center"
         android:orientation="vertical"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:padding="13dp"
-            android:background="@drawable/shape_background_banner_home"
+            android:background="@drawable/shape_background_banner_home_history_gray"
             android:clickable="true"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/shape_background_banner_home_biru"
+                    android:background="@drawable/shape_background_banner_home_history_blue"
                     android:orientation="vertical"
                     android:padding="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -118,12 +118,13 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/tvWaistValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="55"
+                            android:fontFamily="@font/roboto_bold"
+                            tools:text="112"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -163,12 +164,13 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/tvHipValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="455"
+                            android:fontFamily="@font/roboto_bold"
+                            tools:text="67"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -205,13 +207,13 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/tvChestValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="45"
-
+                            android:fontFamily="@font/roboto_bold"
+                            tools:text="102"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -248,12 +250,13 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/tvHeightValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="102"
+                            android:fontFamily="@font/roboto_bold"
+                            tools:text="172"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -267,18 +270,34 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Rekomendasi Ukuran : XL"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="13sp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
                     app:layout_constraintStart_toStartOf="@+id/linearLayout4"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Rekomendasi ukuran :"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvRecommendationValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/roboto_bold"
+                        tools:text="XL"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -300,6 +319,7 @@
                     app:cardCornerRadius="30dp">
 
                     <ImageView
+                        android:id="@+id/ivPreviewImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitCenter"
