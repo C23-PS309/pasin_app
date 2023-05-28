@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityMainBinding
+import com.example.pasin_app.ui.history.HistoryActivity
 import com.example.pasin_app.ui.preview.PreviewActivity
 import com.example.pasin_app.utils.Preferences
 import com.example.pasin_app.utils.createCustomTempFile
@@ -44,6 +45,11 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnKamera.setOnClickListener {
             startCamera()
+        }
+
+        binding.constraintLayoutHistory.setOnClickListener{
+            val intentToHistory = Intent(this@MainActivity, HistoryActivity::class.java)
+            startActivity(intentToHistory)
         }
     }
 

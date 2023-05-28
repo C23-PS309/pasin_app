@@ -23,6 +23,9 @@
             android:name=".ui.preview.PreviewActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.history.HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.myThemes" />
