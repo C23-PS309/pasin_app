@@ -25,4 +25,5 @@
     <string name="permission_not_granted">Permission Not Granted</string>
     <string name="measure_name">Nama Ukuran</string>
     <string name="description">Deskripsi</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

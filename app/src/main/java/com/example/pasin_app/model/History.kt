@@ -1,11 +1,9 @@
 package com.example.pasin_app.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
 data class History(
-    var title: String,
-    var description: String,
-    var photo: Int
-) : Parcelable
+    val historyID: String,
+    val title: String,
+    val photo: Int,
+    val recommendation: String,
+    val measureData: Measure,
+)
