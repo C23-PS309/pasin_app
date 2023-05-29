@@ -1,8 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PasinApp" parent="Theme.Material3.DayNight.NoActionBar"/>
 
-    <style name="Theme.myThemeGreen" parent="Theme.Material3.Light.NoActionBar"/>
+    <style name="Theme.myThemeGreen" parent="Theme.Material3.Light.NoActionBar" />
 
     <style name="Theme.PasinApp" parent="Base.Theme.PasinApp" />
 
