@@ -99,7 +99,7 @@ fun HistoryPage(
 
     Box(
         modifier = Modifier
-            .padding(15.dp, 5.dp, 15.dp, 10.dp)
+            .padding(13.dp)
     ) {
         val listState = rememberLazyListState()
         LazyColumn(
@@ -143,7 +143,7 @@ fun HistoryContent(
                 shape = RoundedCornerShape(30.dp),
                 color = Color(0xFFD9D9D9)
             )
-            .padding(20.dp)
+            .padding(13.dp, 10.dp, 13.dp, 0.dp )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -350,7 +350,7 @@ fun HistoryContent(
         }
         Image(
             painter = painterResource(id = image),
-            contentDescription = null,
+            contentDescription = "history image",
             modifier = Modifier
                 .size(210.dp)
                 .clip(RoundedCornerShape(10.dp))

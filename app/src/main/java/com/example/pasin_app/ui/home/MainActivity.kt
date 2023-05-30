@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             file = myFile
             Preferences.saveImageCamera(myFile.path, this)
             startActivity(Intent(this, PreviewActivity::class.java))
+            finish()
         }
     }
 
@@ -95,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             file = myFile
             Preferences.saveImageGallery(selectedImg.toString(), this)
             startActivity(Intent(this, PreviewActivity::class.java))
+            finish()
         }
     }
 
