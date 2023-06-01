@@ -5,6 +5,6 @@
     <style name="Theme.PasinApp" parent="Base.Theme.PasinApp" />
 
     <style name="Button_Style_Auth" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_button_auth</item>
+        <item name="android:background">@drawable/shape_button_yellow</item>
     </style>
 </resources>

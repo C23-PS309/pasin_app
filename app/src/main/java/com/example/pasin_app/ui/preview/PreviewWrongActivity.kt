@@ -1,9 +1,10 @@
-package com.example.pasin_app.ui.home
+package com.example.pasin_app.ui.preview
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,23 +14,30 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.pasin_app.R
-import com.example.pasin_app.databinding.ActivityMainBinding
+import com.example.pasin_app.databinding.ActivityPreviewWrongBinding
 import com.example.pasin_app.ui.camera.CameraActivity
-import com.example.pasin_app.ui.history.HistoryActivity
-import com.example.pasin_app.ui.login.LoginActivity
-import com.example.pasin_app.ui.preview.PreviewActivity
+import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.utils.Preferences
 import com.example.pasin_app.utils.uriToFile
 import java.io.File
 
-class MainActivity : AppCompatActivity() {
+class PreviewWrongActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityPreviewWrongBinding.inflate(layoutInflater) }
     private var file: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val selectedImage = Preferences.getImageGallery(this)
+        val selectedImageCamera = Preferences.getImageCamera(this)
+
+        if (selectedImage != null) {
+            binding.ivPreview.setImageURI(Uri.parse(selectedImage))
+        } else if (selectedImageCamera != null) {
+            binding.ivPreview.setImageBitmap(BitmapFactory.decodeFile(selectedImageCamera))
+        }
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -46,16 +54,18 @@ class MainActivity : AppCompatActivity() {
             startCamera()
         }
 
-        binding.toolbar.btnLogout.setOnClickListener {
-            Preferences.logout(this)
-            Toast.makeText(this, "Selamat Tinggal", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+        binding.toolbarPreview.btnHome.setOnClickListener {
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
         }
 
-        binding.constraintLayoutHistory.setOnClickListener {
-            val intentToHistory = Intent(this@MainActivity, HistoryActivity::class.java)
-            startActivity(intentToHistory)
+        binding.btnLanjut.setOnClickListener{
+            Intent(this, PreviewActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
         }
     }
 

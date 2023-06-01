@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.preview.PreviewActivity">
+    tools:context=".ui.preview.PreviewWrongActivity">
 
     <include
         android:id="@+id/toolbar_preview"
@@ -39,8 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="@string/tvKriteriaFotoAtas_txt"
+            android:text="@string/tvKriteriaFotoAtasSalah_txt"
             android:textAlignment="center"
+            android:textColor="@color/dark_red"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintStart_toStartOf="@+id/button"
@@ -51,8 +52,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/tvKriteriaFotoBawah_txt"
+            android:text="@string/tvKriteriaFotoBawahSalah_txt"
             android:textAlignment="center"
+            android:textColor="@color/dark_red"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/tv1"
             app:layout_constraintStart_toStartOf="@+id/tv1"
@@ -76,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="@string/tvPilihGender"
+            android:text="@string/tvPilihMetode"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintStart_toStartOf="@+id/button"
@@ -93,45 +95,81 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true">
+                android:orientation="horizontal"
+                android:paddingVertical="15dp">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_male"
-                    android:backgroundTint="@color/blue_gender"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginEnd="30dp"
+                    android:backgroundTint="@color/dark_blue"
+                    android:clickable="true"
                     app:cardCornerRadius="15dp">
 
-                    <ImageButton
-                        android:id="@+id/imageButtonMale"
-                        android:contentDescription="@string/ivMale_txt"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:backgroundTint="@color/blue_gender"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/male" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/btn_gallery"
+                            android:layout_width="63dp"
+                            android:layout_height="63dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/dark_blue"
+                            android:contentDescription="@string/ivGallery_txt"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/tambah_gambar" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Galeri"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_female"
-                    android:backgroundTint="@color/pink"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
+                    android:backgroundTint="@color/dark_blue"
+                    android:clickable="true"
                     app:cardCornerRadius="15dp">
 
-                    <ImageButton
-                        android:id="@+id/imageButtonFemale"
-                        android:contentDescription="@string/ivFemale_txt"
-                        android:backgroundTint="@color/pink"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/gender_female" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/btn_camera"
+                            android:layout_width="63dp"
+                            android:layout_height="63dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/dark_blue"
+                            android:contentDescription="@string/ivCamera_txt"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/camera" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Kamera"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -140,14 +178,14 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/btnProses"
+            android:id="@+id/btnLanjut"
             android:layout_width="180dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/shape_button_blue"
-            android:text="@string/btnProses_txt"
-            android:textColor="@color/white"
             android:backgroundTint="@color/dark_blue"
+            android:text="@string/btnNext_txt"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
             app:layout_constraintStart_toStartOf="@+id/relativeLayout"

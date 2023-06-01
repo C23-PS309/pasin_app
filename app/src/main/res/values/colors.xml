@@ -12,4 +12,7 @@
     <color name="blue">#19A7CE</color>
     <color name="dark_blue">#146C94</color>
     <color name="dark_blue_transparent">#2748AC</color>
+    <color name="pink">#FF9E9E</color>
+    <color name="blue_gender">#5F91FB</color>
+    <color name="dark_red">#9A0C0C</color>
 </resources>
