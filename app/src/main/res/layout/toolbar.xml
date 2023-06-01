@@ -16,15 +16,6 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/logo_pasin"/>
 
-        <ImageView
-            android:id="@+id/btn_home"
-            android:clickable="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/baseline_home_24"/>
-
     </RelativeLayout>
 
 </RelativeLayout>

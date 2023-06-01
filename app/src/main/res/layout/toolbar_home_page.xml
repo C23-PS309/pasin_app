@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_toolbar">
+    android:background="@drawable/shape_toolbar_home">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,17 +13,16 @@
             android:layout_width="55dp"
             android:layout_height="23dp"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/logo_pasin"/>
-
+        
         <ImageView
-            android:id="@+id/btn_home"
+            android:id="@+id/btn_logout"
             android:clickable="true"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/baseline_home_24"/>
+            android:src="@drawable/baseline_logout_24"/>
 
     </RelativeLayout>
 
