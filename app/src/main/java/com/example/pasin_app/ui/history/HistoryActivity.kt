@@ -1,5 +1,6 @@
 package com.example.pasin_app.ui.history
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
@@ -8,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +29,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,67 +45,48 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityHistoryBinding
+import com.example.pasin_app.model.History
 import com.example.pasin_app.repository.ItemRepository
+import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.utils.ViewModelFactory
 
 class HistoryActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityHistoryBinding.inflate(layoutInflater) }
-//    private val list = ArrayList<History>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(binding.root)
         setContent {
             MaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    HistoryPage()
+                    HistoryPage(
+                        startDetailActivity = { historyId ->
+                            startDetailActivity(historyId) // Call the startDetailActivity function in the activity
+                        }
+                    )
                 }
             }
         }
-
-//        binding.rvHistories.layoutManager = GridLayoutManager(this, 2)
-//        list.addAll(dummyListHistory())
-//        binding.rvHistories.adapter = ListHistoryAdapter(list)
-
     }
 
-//    private fun dummyListHistory(): ArrayList<History> {
-//        val dataTitle = arrayOf(
-//            "Nama 1",
-//            "Nama 2",
-//            "Nama 3",
-//            "Nama 4",
-//            "Nama 5"
-//        )
-//        val dataDesc = arrayOf(
-//            "Desc 1",
-//            "Desc 2",
-//            "Desc 3",
-//            "Desc 4",
-//            "Desc 5"
-//        )
-//
-//        val listHistory = ArrayList<History>()
-//        for (i in dataTitle.indices) {
-//            val article = History(dataTitle[i], dataDesc[i], R.drawable.contoh_foto)
-//            listHistory.add(article)
-//        }
-//        return listHistory
-//    }
+    private fun startDetailActivity(historyId: String) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.EXTRA_ID, historyId)
+        startActivity(intent)
+    }
 }
 
 @Composable
 fun HistoryPage(
     viewModel: HistoryViewModel = viewModel(factory = ViewModelFactory(ItemRepository())),
+    startDetailActivity: (String) -> Unit
 ) {
     val groupedItems = viewModel.groupedItems.collectAsState()
-
     Box(
         modifier = Modifier
-            .padding(15.dp, 5.dp, 15.dp, 10.dp)
+            .padding(13.dp)
     ) {
         val listState = rememberLazyListState()
         LazyColumn(
@@ -109,6 +96,7 @@ fun HistoryPage(
             groupedItems.value.forEach { (_, items) ->
                 items(items, key = { it.historyID }) { item ->
                     HistoryContent(
+                        historyId = item.historyID,
                         image = item.photo,
                         name = item.title,
                         waistValue = item.measureData.waist,
@@ -118,7 +106,9 @@ fun HistoryPage(
                         recommendationValue = item.recommendation,
                         modifier = Modifier
                             .padding(bottom = 10.dp)
-                    )
+                    ){
+                        startDetailActivity(item.historyID)
+                    }
                 }
             }
         }
@@ -127,6 +117,7 @@ fun HistoryPage(
 
 @Composable
 fun HistoryContent(
+    historyId: String,
     image: Int,
     name: String,
     waistValue: Int,
@@ -135,15 +126,16 @@ fun HistoryContent(
     heightValue: Int,
     recommendationValue: String,
     modifier: Modifier = Modifier,
+    onItemClick: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
+        modifier = modifier.clickable { onItemClick.invoke() }
             .background(
                 shape = RoundedCornerShape(30.dp),
                 color = Color(0xFFD9D9D9)
             )
-            .padding(20.dp)
+            .padding(13.dp, 10.dp, 13.dp, 0.dp )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -350,7 +342,7 @@ fun HistoryContent(
         }
         Image(
             painter = painterResource(id = image),
-            contentDescription = null,
+            contentDescription = "history image",
             modifier = Modifier
                 .size(210.dp)
                 .clip(RoundedCornerShape(10.dp))
@@ -361,13 +353,14 @@ fun HistoryContent(
 @Preview(showBackground = true)
 @Composable
 fun PagePreview() {
-    HistoryPage()
+    HistoryPage(startDetailActivity = {})
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewContent() {
     HistoryContent(
+        historyId = "123",
         image = R.drawable.contoh_foto,
         name = "Bob Sadino Hula Hula",
         waistValue = 65,
@@ -375,5 +368,6 @@ fun PreviewContent() {
         chestValue = 23,
         heightValue = 160,
         recommendationValue = "XL",
+        onItemClick = {}
     )
 }

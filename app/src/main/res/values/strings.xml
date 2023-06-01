@@ -26,4 +26,13 @@
     <string name="measure_name">Nama Ukuran</string>
     <string name="description">Deskripsi</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="nama_pengukuran">Nama Pengukuran</string>
+    <string name="tanggal_pengukuran">Senin, 22 - Mei - 2023 | 15:00</string>
+    <string name="pinggang">Pinggang</string>
+    <string name="hasil_pengukuran">Hasil Pengukuran</string>
+    <string name="pinggul">Pinggul</string>
+    <string name="dada">Dada</string>
+    <string name="tinggi">Tinggi</string>
+    <string name="xx_cm">XX cm</string>
+    <string name="title_hint">Pengukuran Tanpa Judul</string>
 </resources>

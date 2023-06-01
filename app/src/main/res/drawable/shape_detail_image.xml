@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/transparent" /> <!-- Set the background color of the border -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/black" /> <!-- Customize the border color as desired -->
+    <corners android:radius="16dp" /> <!-- Set the desired radius value -->
+</shape>
