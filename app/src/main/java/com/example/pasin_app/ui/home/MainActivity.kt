@@ -4,12 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -33,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
             file = myFile
             Preferences.saveImageCamera(myFile.path, this)
             startActivity(Intent(this, PreviewActivity::class.java))
+            finish()
         }
     }
 
@@ -95,6 +96,7 @@ class MainActivity : AppCompatActivity() {
             file = myFile
             Preferences.saveImageGallery(selectedImg.toString(), this)
             startActivity(Intent(this, PreviewActivity::class.java))
+            finish()
         }
     }
 

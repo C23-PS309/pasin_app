@@ -1,2 +1,6 @@
 # pasin_app
-Bismillah jaya jaya jaya !!!
+Ikan patin jaga pos,
+Jaga pos sambil maen gong.
+
+Pasin ni boss,
+Senggol dong.
