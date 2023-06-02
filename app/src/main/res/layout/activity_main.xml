@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include layout="@layout/toolbar_home_page"
+        android:id="@+id/toolbar"
         android:elevation="12dp"
         android:outlineProvider="bounds"/>
 
@@ -91,7 +92,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout4"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
@@ -103,17 +104,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvNama">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="45dp"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="Waist"
+                            android:text="@string/tvPinggang_txt"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -155,11 +156,11 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="45dp"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="Hip"
+                            android:text="@string/tvPanggul_txt"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -199,10 +200,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="45dp"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="Chest"
+                            android:text="@string/tvDada_txt"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -242,10 +243,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="45dp"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_regular"
-                            android:text="Height"
+                            android:text="@string/tvTinggi_txt"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -377,7 +378,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7">
 
             <LinearLayout
-                android:id="@+id/btn_galeri"
+                android:id="@+id/btn_gallery"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
@@ -388,7 +389,7 @@
                 android:elevation="3dp"
                 android:outlineProvider="background"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_kamera"
+                app:layout_constraintEnd_toStartOf="@+id/btn_camera"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -409,7 +410,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/btn_kamera"
+                android:id="@+id/btn_camera"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/shape_camera_home"
@@ -420,7 +421,7 @@
                 android:outlineProvider="background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_galeri"
+                app:layout_constraintStart_toEndOf="@+id/btn_gallery"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
 

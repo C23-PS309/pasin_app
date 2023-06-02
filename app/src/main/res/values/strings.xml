@@ -35,4 +35,21 @@
     <string name="tinggi">Tinggi</string>
     <string name="xx_cm">XX cm</string>
     <string name="title_hint">Pengukuran Tanpa Judul</string>
+    <string name="btnProses_txt">Proses</string>
+    <string name="tvPilihGender">Pilih Gender :</string>
+    <string name="tvKriteriaFotoAtas_txt">Pastikan fotonya memenuhi kriteria !</string>
+    <string name="tvKriteriaFotoBawah_txt">Dilihat dulu kriterianya ya...</string>
+    <string name="ivMale_txt">Laki - Laki</string>
+    <string name="ivFemale_txt">Perempuan</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tvKriteriaFotoAtasSalah_txt">Maaf gambar anda belum sesuai kriteria !</string>
+    <string name="tvKriteriaFotoBawahSalah_txt">Silahkan pilih gambar lagi...</string>
+    <string name="tvPilihMetode">Pilih metode :</string>
+    <string name="ivCamera_txt">Camera</string>
+    <string name="ivGallery_txt">Gallery</string>
+    <string name="btnNext_txt">Lanjut</string>
+    <string name="tvPinggang_txt">Pinggang</string>
+    <string name="tvPanggul_txt">Panggul</string>
+    <string name="tvDada_txt">Dada</string>
+    <string name="tvTinggi_txt">Tinggi</string>
 </resources>

@@ -5,7 +5,9 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.pasin_app.databinding.ActivityPreviewBinding
+import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.result.ResultActivity
 import com.example.pasin_app.utils.Preferences
 
@@ -27,6 +29,13 @@ class PreviewActivity : AppCompatActivity() {
         binding.btnProses.setOnClickListener {
             val intent = Intent(this, ResultActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.toolbarPreview.btnHome.setOnClickListener {
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
         }
     }
 }

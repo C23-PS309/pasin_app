@@ -20,9 +20,21 @@ object Preferences {
         editor.apply()
     }
 
+    fun deleteImageCamera(context: Context){
+        val editor = editor(context, "onSignIn")
+        editor.remove("image")
+        editor.apply()
+    }
+
     fun saveImageGallery(image: String, context: Context){
         val editor = editor(context, "onSignIn")
         editor.putString("image", image)
+        editor.apply()
+    }
+
+    fun deleteImageGallery(context: Context){
+        val editor = editor(context, "onSignIn")
+        editor.remove("image")
         editor.apply()
     }
 

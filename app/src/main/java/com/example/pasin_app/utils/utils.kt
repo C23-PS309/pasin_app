@@ -1,11 +1,14 @@
 package com.example.pasin_app.utils
 
+import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import com.example.pasin_app.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -32,6 +35,18 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 fun createCustomTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile(timeStamp, ".jpg", storageDir)
+}
+
+fun createFile(application: Application): File {
+    val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
+        File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
+    }
+
+    val outputDirectory = if (
+        mediaDir != null && mediaDir.exists()
+    ) mediaDir else application.filesDir
+
+    return File(outputDirectory, "$timeStamp.jpg")
 }
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
