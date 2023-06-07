@@ -14,11 +14,10 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-
     }
 
     companion object {
        const val EXTRA_ID = "123"
     }
+    
 }

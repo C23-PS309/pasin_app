@@ -90,7 +90,7 @@ fun HistoryPage(
     ) {
         val listState = rememberLazyListState()
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(5.dp),
             state = listState,
         ) {
             groupedItems.value.forEach { (_, items) ->
@@ -105,7 +105,7 @@ fun HistoryPage(
                         heightValue = item.measureData.height,
                         recommendationValue = item.recommendation,
                         modifier = Modifier
-                            .padding(bottom = 10.dp)
+                            .padding(bottom = 6.dp)
                     ){
                         startDetailActivity(item.historyID)
                     }
@@ -135,7 +135,7 @@ fun HistoryContent(
                 shape = RoundedCornerShape(30.dp),
                 color = Color(0xFFD9D9D9)
             )
-            .padding(13.dp, 10.dp, 13.dp, 0.dp )
+            .padding(13.dp, 10.dp, 13.dp, 10.dp )
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -160,9 +160,8 @@ fun HistoryContent(
                     .padding(10.dp)
             ) {
                 Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = modifier
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = 3.dp)
                         .fillMaxWidth()
                 ) {
                     Text(
@@ -200,7 +199,7 @@ fun HistoryContent(
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = modifier
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = 3.dp)
                         .fillMaxWidth()
                 ) {
                     Text(
@@ -238,7 +237,7 @@ fun HistoryContent(
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = modifier
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = 3.dp)
                         .fillMaxWidth()
                 ) {
                     Text(

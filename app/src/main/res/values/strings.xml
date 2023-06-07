@@ -33,7 +33,7 @@
     <string name="pinggul">Pinggul</string>
     <string name="dada">Dada</string>
     <string name="tinggi">Tinggi</string>
-    <string name="xx_cm">XX cm</string>
+    <string name="xx_cm">cm</string>
     <string name="title_hint">Pengukuran Tanpa Judul</string>
     <string name="btnProses_txt">Proses</string>
     <string name="tvPilihGender">Pilih Gender :</string>
@@ -52,4 +52,10 @@
     <string name="tvPanggul_txt">Panggul</string>
     <string name="tvDada_txt">Dada</string>
     <string name="tvTinggi_txt">Tinggi</string>
+    <string name="contoh_pinggang">55</string>
+    <string name="contoh_pinggul">109</string>
+    <string name="contoh_dada">55</string>
+    <string name="contoh_tinggi">172</string>
+    <string name="rekomendasi_ukuran">Rekomendasi Ukuran Baju</string>
+    <string name="contoh_ukuranBaju">XL</string>
 </resources>

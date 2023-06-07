@@ -24,14 +24,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_preview">
 
-        <ImageView
-            android:id="@+id/ivPreview"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardIvPreview"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            app:cardCornerRadius="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv1"
@@ -45,7 +55,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/button"
             app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/ivPreview" />
+            app:layout_constraintTop_toBottomOf="@+id/cardIvPreview" />
 
         <TextView
             android:id="@+id/tv2"

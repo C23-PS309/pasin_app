@@ -50,7 +50,7 @@ object HistoryData {
             "7",
             "Mereka",
             R.drawable.contoh_foto,
-            "XXXL",
+            "XXL",
             Measure(634, 643, 234, 23)
         ),
         History(
