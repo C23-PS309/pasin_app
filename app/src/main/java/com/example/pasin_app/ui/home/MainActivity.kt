@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var file: File? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -41,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Silahkan pilih gambar", Toast.LENGTH_SHORT).show()
             startGallery()
         }
+
         binding.btnCamera.setOnClickListener {
             Toast.makeText(this, "Silahkan ambil foto", Toast.LENGTH_SHORT).show()
             startCamera()

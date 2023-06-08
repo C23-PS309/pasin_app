@@ -54,6 +54,10 @@ val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT, Locale.US
 ).format(System.currentTimeMillis())
 
+fun rotateFrontCamera() {
+    val matrix = Matrix()
+    matrix.postRotate(180f)
+}
 fun File.reduceFileImage(): File {
     val bitmap = BitmapFactory.decodeFile(path)
     var compressQuality = 100
