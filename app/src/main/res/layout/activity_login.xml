@@ -98,7 +98,7 @@
         app:layout_constraintStart_toStartOf="@+id/edPasswordLogin"
         app:layout_constraintTop_toBottomOf="@+id/edPasswordLogin" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
         style="@style/Button_Style_Auth"
         android:layout_width="135dp"

@@ -108,7 +108,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:orientation="horizontal"
-                android:paddingVertical="15dp">
+                android:paddingVertical="10dp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="120dp"
@@ -187,13 +187,12 @@
 
         </RelativeLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Button_Style_Blue"
             android:id="@+id/btnLanjut"
             android:layout_width="180dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_button_blue"
-            android:backgroundTint="@color/dark_blue"
+            android:layout_marginTop="20dp"
             android:text="@string/btnNext_txt"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

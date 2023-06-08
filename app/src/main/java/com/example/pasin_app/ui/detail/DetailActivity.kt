@@ -1,11 +1,10 @@
 package com.example.pasin_app.ui.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.annotation.StringRes
-import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityDetailBinding
-import com.example.pasin_app.model.History
+import com.example.pasin_app.ui.home.MainActivity
 
 class DetailActivity : AppCompatActivity() {
 
@@ -14,6 +13,13 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.toolbarDetail.btnHome.setOnClickListener {
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+        }
     }
 
     companion object {

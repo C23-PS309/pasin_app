@@ -6,7 +6,7 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            url "https://repository-achartengine.forge.cloudbees.com/snapshot/"
+            url "https://jitpack.io"
         }
     }
 }

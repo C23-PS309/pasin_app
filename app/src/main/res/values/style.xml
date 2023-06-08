@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button_Style_Auth" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_button_yellow</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+    <style name="Button_Style_Blue" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_button_blue</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="Button_Style_Red" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_button_red</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>

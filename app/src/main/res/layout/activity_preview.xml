@@ -74,7 +74,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/shape_button_yellow"
-            android:text="Lihat Kriteria Foto"
+            android:text="@string/lihat_kriteria_foto"
             android:textColor="@color/dark_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,63 +100,58 @@
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingVertical="15dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_male"
+                <ImageButton
+                    android:id="@+id/imageButtonMale"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/shape_background_gender"
                     android:backgroundTint="@color/blue_gender"
+                    android:padding="8dp"
+                    android:contentDescription="@string/ivMale_txt"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButtonFemale"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/male" />
+
+
+                <ImageButton
+                    android:id="@+id/imageButtonFemale"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_marginEnd="30dp"
-                    app:cardCornerRadius="15dp">
-
-                    <ImageButton
-                        android:id="@+id/imageButtonMale"
-                        android:contentDescription="@string/ivMale_txt"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:backgroundTint="@color/blue_gender"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/male" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_female"
+                    android:background="@drawable/shape_background_gender"
                     android:backgroundTint="@color/pink"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    app:cardCornerRadius="15dp">
+                    android:contentDescription="@string/ivFemale_txt"
+                    android:padding="8dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toEndOf="@+id/imageButtonMale"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/gender_female" />
 
-                    <ImageButton
-                        android:id="@+id/imageButtonFemale"
-                        android:contentDescription="@string/ivFemale_txt"
-                        android:backgroundTint="@color/pink"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/gender_female" />
-
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </RelativeLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnProses"
+            style="@style/Button_Style_Blue"
             android:layout_width="180dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:text="@string/btnProses_txt"
             android:textColor="@color/white"
-            android:backgroundTint="@color/dark_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
             app:layout_constraintStart_toStartOf="@+id/relativeLayout"

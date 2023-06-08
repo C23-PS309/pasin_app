@@ -134,7 +134,7 @@
         app:layout_constraintStart_toStartOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintTop_toBottomOf="@+id/edConfirmPasswordRegister" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
         style="@style/Button_Style_Auth"
         android:layout_width="177dp"
@@ -142,7 +142,6 @@
         android:layout_marginTop="34dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/btnRegister_txt"
-        android:textColor="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="@+id/edConfirmPasswordRegister"
         app:layout_constraintStart_toStartOf="@+id/tvSudahPunyaAkun"
         app:layout_constraintTop_toBottomOf="@+id/tvSudahPunyaAkun" />

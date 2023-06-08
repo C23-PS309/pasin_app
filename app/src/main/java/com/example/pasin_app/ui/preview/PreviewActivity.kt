@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityPreviewBinding
 import com.example.pasin_app.ui.home.MainActivity
@@ -29,14 +28,30 @@ class PreviewActivity : AppCompatActivity() {
             binding.ivPreview.setImageBitmap(BitmapFactory.decodeFile(selectedImageCamera))
         }
 
-        binding.imageButtonMale.setOnClickListener{
-            binding.btnFemale.backgroundTintList = resources.getColorStateList(R.color.gray)
-            binding.imageButtonFemale.backgroundTintList = resources.getColorStateList(R.color.gray)
-            genderState = "Male"
+        binding.imageButtonMale.setOnClickListener {
+            binding.apply {
+                if (genderState != "Male") {
+                    imageButtonFemale.backgroundTintList = resources.getColorStateList(R.color.gray)
+                    imageButtonMale.backgroundTintList = resources.getColorStateList(R.color.blue_gender)
+                    genderState = "Male"
+                    Log.d("Gender", genderState)
+                }
+            }
+        }
+
+        binding.imageButtonFemale.setOnClickListener {
+            binding.apply {
+                if (genderState != "Female") {
+                    imageButtonMale.backgroundTintList = resources.getColorStateList(R.color.gray)
+                    imageButtonFemale.backgroundTintList = resources.getColorStateList(R.color.pink)
+                    genderState = "Female"
+                    Log.d("Gender", genderState)
+                }
+            }
+
         }
 
         binding.btnProses.setOnClickListener {
-            Toast.makeText(this, "Gender : $genderState", Toast.LENGTH_SHORT).show()
             Intent(this, ResultActivity::class.java).also {
                 startActivity(it)
                 finish()

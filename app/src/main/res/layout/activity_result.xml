@@ -13,8 +13,8 @@
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar_home"
+            android:id="@+id/toolbar_result"
+            layout="@layout/toolbar"
             android:elevation="12dp"
             android:outlineProvider="bounds"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
             android:paddingVertical="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_result">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/frameLayout2"
@@ -95,12 +95,13 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/shape_background_banner_result"
                 android:paddingHorizontal="18dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/result_edit"
+                app:layout_constraintHorizontal_bias="0.032"
                 app:layout_constraintStart_toStartOf="@+id/result_edit"
                 app:layout_constraintTop_toBottomOf="@+id/result_edit">
 
@@ -136,8 +137,8 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_pinggang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -146,186 +147,254 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                     <TextView
+                        android:id="@+id/tv_pinggang"
                         android:layout_width="55dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto"
                         android:text="@string/pinggang"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="225dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_pinggang"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_valuePinggang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto_bold"
+                        android:gravity="end"
                         android:text="@string/contoh_pinggang"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_pinggang"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_cm1"
+                        app:layout_constraintStart_toEndOf="@+id/textView1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_pinggang" />
 
                     <TextView
+                        android:id="@+id/tv_cm1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/xx_cm"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_pinggul"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_pinggang">
 
                     <TextView
+                        android:id="@+id/tv_pinggul"
                         android:layout_width="55dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/pinggul"
+                        android:text="@string/pinggang"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="225dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_pinggul"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_valuePinggul"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="@string/contoh_pinggul"
+                        android:gravity="end"
+                        android:text="@string/contoh_pinggang"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_pinggul"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_cm2"
+                        app:layout_constraintStart_toEndOf="@+id/textView2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_pinggul" />
 
                     <TextView
+                        android:id="@+id/tv_cm2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/xx_cm"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout3"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_Dada"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_pinggul">
 
                     <TextView
+                        android:id="@+id/tv_dada"
                         android:layout_width="55dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/dada"
+                        android:text="@string/pinggul"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="225dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_dada"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_valueDada"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="@string/contoh_dada"
+                        android:gravity="end"
+                        android:text="@string/contoh_pinggul"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_dada"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_cm3"
+                        app:layout_constraintStart_toEndOf="@+id/textView3"
+                        app:layout_constraintTop_toTopOf="@+id/tv_dada" />
 
                     <TextView
+                        android:id="@+id/tv_cm3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/xx_cm"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout4"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout_Tinggi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout3"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout_Dada">
 
                     <TextView
+                        android:id="@+id/tv_tinggi"
                         android:layout_width="55dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/tinggi"
+                        android:text="@string/dada"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="225dp"
+                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
                         android:text=":"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tv_tinggi"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_valueTinggi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="@string/contoh_tinggi"
+                        android:gravity="end"
+                        android:text="@string/contoh_pinggang"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_tinggi"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_cm4"
+                        app:layout_constraintStart_toEndOf="@+id/textView4"
+                        app:layout_constraintTop_toTopOf="@+id/tv_tinggi" />
 
                     <TextView
+                        android:id="@+id/tv_cm4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/xx_cm"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/shape_background_banner_result"
                 android:paddingHorizontal="18dp"
                 android:paddingTop="10dp"
@@ -397,30 +466,31 @@
                     app:layout_constraintTop_toTopOf="@+id/cardView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Button_Style_Blue"
                 android:id="@+id/btn_home"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="22dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/dark_blue"
                 android:text="Home"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_history"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Button_Style_Blue"
                 android:id="@+id/btn_history"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="22dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/dark_blue"
                 android:text="History"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+                app:layout_constraintStart_toEndOf="@+id/btn_home"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>

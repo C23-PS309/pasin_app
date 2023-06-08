@@ -54,8 +54,11 @@ android {
 }
 
 dependencies {
+
+    // Github user tag
+
     // Auto background remover
-    implementation 'com.github.GhayasAhmad:auto-background-remover:1.0.3'
+    // implementation 'com.github.GhayasAhmad:auto-background-remover:1.0.3'
 
     // CameraX
     implementation "androidx.camera:camera-camera2:1.2.3"
@@ -79,7 +82,7 @@ dependencies {
 
     // compose
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
-    implementation 'androidx.activity:activity-compose:1.4.0'
+    implementation 'androidx.activity:activity-compose:1.7.2'
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
     implementation 'androidx.compose.ui:ui-tooling-preview'

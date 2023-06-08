@@ -2,9 +2,4 @@
 
     <style name="Theme.myThemeGreen" parent="Theme.Material3.Light.NoActionBar" />
 
-    <style name="Theme.PasinApp" parent="Base.Theme.PasinApp" />
-
-    <style name="Button_Style_Auth" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_button_yellow</item>
-    </style>
 </resources>
