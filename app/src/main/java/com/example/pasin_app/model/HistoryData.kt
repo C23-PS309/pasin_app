@@ -30,7 +30,7 @@ object HistoryData {
             "Kamu",
             R.drawable.contoh_foto,
             "S",
-            Measure(1231, 2122, 2333, 4445)
+            Measure(123, 212, 233, 444)
         ),
         History(
             "5",

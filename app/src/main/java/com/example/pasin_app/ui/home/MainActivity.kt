@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         binding.constraintLayoutHistory.setOnClickListener {
             val intentToHistory = Intent(this@MainActivity, HistoryActivity::class.java)
             startActivity(intentToHistory)
+            finish()
         }
     }
 

@@ -12,12 +12,13 @@
         <ImageView
             android:layout_width="55dp"
             android:layout_height="23dp"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:src="@drawable/logo_pasin"/>
         
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:background="@color/dark_blue"
             android:id="@+id/btn_logout"
-            android:clickable="true"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"

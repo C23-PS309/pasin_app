@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/shape_background_banner_result"
+                android:background="@drawable/shape_background_juduled"
                 android:inputType="text"
                 android:paddingStart="16dp"
                 android:textSize="16sp"

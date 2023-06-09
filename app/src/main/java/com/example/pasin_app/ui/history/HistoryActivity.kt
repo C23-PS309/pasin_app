@@ -1,8 +1,10 @@
 package com.example.pasin_app.ui.history
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.core.tween
@@ -14,7 +16,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -23,9 +27,16 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.collectAsState
@@ -36,7 +47,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -44,37 +58,74 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pasin_app.R
-import com.example.pasin_app.databinding.ActivityHistoryBinding
-import com.example.pasin_app.model.History
 import com.example.pasin_app.repository.ItemRepository
 import com.example.pasin_app.ui.detail.DetailActivity
+import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.utils.ViewModelFactory
 
 class HistoryActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityHistoryBinding.inflate(layoutInflater) }
-
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme {
-                Surface(
-                    modifier = Modifier.fillMaxWidth()
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = Color.Red)
                 ) {
-                    HistoryPage(
-                        startDetailActivity = { historyId ->
-                            startDetailActivity(historyId) // Call the startDetailActivity function in the activity
-                        }
-                    )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(color = Color.White)
+                    ) {
+                        TopAppBar(
+                            colors = TopAppBarDefaults.smallTopAppBarColors(
+                                containerColor = colorResource(id = R.color.dark_blue),
+                                titleContentColor = colorResource(id = R.color.white),
+                                actionIconContentColor = colorResource(id = R.color.white),
+                                navigationIconContentColor = colorResource(id = R.color.white)
+                            ),
+                            title = {
+                                Text(
+                                    text = "History Pasin",
+                                    fontSize = 20.sp,
+                                    fontFamily = FontFamily(Font(R.font.roboto_bold))
+                                )
+                            },
+                            actions = {
+                                IconButton(
+                                    onClick = {
+                                        Intent(this@HistoryActivity, MainActivity::class.java).also {
+                                            startActivity(it)
+                                            finish()
+                                        }
+                                    }
+                                    ) {
+                                    Icon(
+                                        Icons.Filled.Home,
+                                        contentDescription = "Home",
+                                        tint = colorResource(id = R.color.white)
+                                    )
+                                }
+                                },
+                            )
+                        HistoryPage(
+                            startDetailActivity = { historyId -> startDetailActivity(historyId) }
+                        )
+                    }
                 }
             }
         }
     }
 
     private fun startDetailActivity(historyId: String) {
+        Log.d("HistoryActivity", "startDetailActivity: $historyId")
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(DetailActivity.EXTRA_ID, historyId)
         startActivity(intent)
+        finish()
     }
 }
 
@@ -86,7 +137,7 @@ fun HistoryPage(
     val groupedItems = viewModel.groupedItems.collectAsState()
     Box(
         modifier = Modifier
-            .padding(13.dp)
+            .padding(20.dp)
     ) {
         val listState = rememberLazyListState()
         LazyColumn(
@@ -106,7 +157,7 @@ fun HistoryPage(
                         recommendationValue = item.recommendation,
                         modifier = Modifier
                             .padding(bottom = 6.dp)
-                    ){
+                    ) {
                         startDetailActivity(item.historyID)
                     }
                 }
@@ -130,12 +181,13 @@ fun HistoryContent(
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.clickable { onItemClick.invoke() }
+        modifier = modifier
+            .clickable { onItemClick.invoke() }
             .background(
                 shape = RoundedCornerShape(30.dp),
                 color = Color(0xFFD9D9D9)
             )
-            .padding(13.dp, 10.dp, 13.dp, 10.dp )
+            .padding(13.dp, 10.dp, 13.dp, 10.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -160,17 +212,18 @@ fun HistoryContent(
                     .padding(10.dp)
             ) {
                 Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = modifier
                         .padding(bottom = 3.dp)
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Waist",
+                        text = "Pinggang",
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(1.5f)
                     )
                     Text(
                         text = ":",
@@ -186,7 +239,7 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.6f)
                     )
                     Text(
                         text = "cm",
@@ -203,12 +256,12 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Hip",
+                        text = "Pinggul",
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(1.5f)
                     )
                     Text(
                         text = ":",
@@ -224,7 +277,7 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.6f)
                     )
                     Text(
                         text = "cm",
@@ -241,12 +294,12 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Chest",
+                        text = "Dada",
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(1.5f)
                     )
                     Text(
                         text = ":",
@@ -262,7 +315,7 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.6f)
                     )
                     Text(
                         text = "cm",
@@ -278,12 +331,12 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Height",
+                        text = "Tinggi",
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(1.5f)
                     )
                     Text(
                         text = ":",
@@ -299,7 +352,7 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.6f)
                     )
                     Text(
                         text = "cm",
@@ -310,12 +363,12 @@ fun HistoryContent(
                     )
                 }
             }
-            Row (
+            Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = modifier
                     .padding(top = 10.dp)
                     .fillMaxWidth()
-            ){
+            ) {
                 Text(
                     text = "Rekomendasi Ukuran",
                     color = Color(0xFF146C94),
