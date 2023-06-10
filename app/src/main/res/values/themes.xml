@@ -2,4 +2,9 @@
 
     <style name="Theme.myThemeGreen" parent="Theme.Material3.Light.NoActionBar" />
 
+    <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
 </resources>

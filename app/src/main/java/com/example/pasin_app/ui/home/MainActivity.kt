@@ -2,6 +2,7 @@ package com.example.pasin_app.ui.home
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -12,23 +13,32 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityMainBinding
+import com.example.pasin_app.model.UserPreference
 import com.example.pasin_app.ui.camera.CameraActivity
 import com.example.pasin_app.ui.history.HistoryActivity
-import com.example.pasin_app.ui.login.LoginActivity
+import com.example.pasin_app.ui.auth.LoginActivity
 import com.example.pasin_app.ui.preview.PreviewActivity
 import com.example.pasin_app.utils.Preferences
+import com.example.pasin_app.utils.ViewModelFactory
 import com.example.pasin_app.utils.uriToFile
 import java.io.File
 
+private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var file: File? = null
+    private lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setupView()
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -47,16 +57,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.toolbar.btnLogout.setOnClickListener {
-            Preferences.logout(this)
             Toast.makeText(this, "Selamat Tinggal", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            mainViewModel.logout()
         }
 
         binding.constraintLayoutHistory.setOnClickListener {
             val intentToHistory = Intent(this@MainActivity, HistoryActivity::class.java)
             startActivity(intentToHistory)
             finish()
+        }
+    }
+
+    private fun setupView() {
+        mainViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(context = this, pref = UserPreference.getInstance(dataStore))
+        )[MainViewModel::class.java]
+
+        mainViewModel.getUser().observe(this){ user ->
+            if(!user.isLogin){
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
         }
     }
 
