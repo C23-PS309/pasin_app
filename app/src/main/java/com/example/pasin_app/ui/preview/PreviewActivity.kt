@@ -48,7 +48,6 @@ class PreviewActivity : AppCompatActivity() {
                     Log.d("Gender", genderState)
                 }
             }
-
         }
 
         binding.btnProses.setOnClickListener {

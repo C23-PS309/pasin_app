@@ -74,7 +74,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-
         }
         // Button ke register
         val startRegisterActivity = View.OnClickListener {

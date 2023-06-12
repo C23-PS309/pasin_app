@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.pasin_app.databinding.ActivityResultBinding
+import com.example.pasin_app.ui.history.HistoryActivity
 import com.example.pasin_app.ui.home.MainActivity
 
 class ResultActivity : AppCompatActivity() {
@@ -16,6 +17,13 @@ class ResultActivity : AppCompatActivity() {
 
         binding.btnHome.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
+        }
+
+        binding.btnHistory.setOnClickListener {
+            Intent(this, HistoryActivity::class.java).also {
                 startActivity(it)
                 finish()
             }

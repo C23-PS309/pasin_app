@@ -59,4 +59,6 @@
     <string name="rekomendasi_ukuran">Rekomendasi Ukuran Baju</string>
     <string name="contoh_ukuranBaju">XL</string>
     <string name="lihat_kriteria_foto">Lihat Kriteria Foto</string>
+    <string name="masukkan_umur">Masukkan umur</string>
+    <string name="masukkan_tinggi">Masukkan tinggi</string>
 </resources>
