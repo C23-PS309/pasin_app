@@ -49,28 +49,58 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/contoh_foto" />
-
             </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+                <TextView
+                    android:id="@+id/tv_umur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Umur" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text=":"/>
+                <TextView
+                    android:id="@+id/tv_valueUmur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/valueUmur"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Tahun"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tanggal_pengukuran"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/tanggal_pengukuran"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
-                app:layout_constraintHorizontal_bias="0.506"
                 app:layout_constraintStart_toStartOf="@+id/frameLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
             <TextView
                 android:id="@+id/tv_judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Judul Pengukuran"
                 android:textColor="@color/black"
@@ -148,14 +178,14 @@
 
                     <TextView
                         android:id="@+id/tv_pinggang"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/pinggang"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/textView1"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -211,14 +241,15 @@
 
                     <TextView
                         android:id="@+id/tv_pinggul"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/pinggang"
+                        android:text="@string/pinggul"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/textView2"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
@@ -274,10 +305,10 @@
 
                     <TextView
                         android:id="@+id/tv_dada"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/pinggul"
+                        android:text="@string/dada"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -337,10 +368,10 @@
 
                     <TextView
                         android:id="@+id/tv_tinggi"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/dada"
+                        android:text="@string/Tinggi"
                         android:textColor="@color/black"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -443,7 +474,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
                     <ImageView
-                        android:id="@+id/imageView10"
+                        android:id="@+id/imageViewGender"
                         android:layout_width="69dp"
                         android:layout_height="63dp"
                         android:layout_gravity="center"
