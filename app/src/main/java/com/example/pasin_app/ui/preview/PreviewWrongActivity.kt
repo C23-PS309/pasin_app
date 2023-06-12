@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.pasin_app.R
@@ -47,17 +48,30 @@ class PreviewWrongActivity : AppCompatActivity() {
 
         binding.btnGallery.setOnClickListener {
             Toast.makeText(this, "Silahkan pilih gambar", Toast.LENGTH_SHORT).show()
+            Preferences.deleteImageGallery(this@PreviewWrongActivity)
             startGallery()
         }
         binding.btnCamera.setOnClickListener {
             Toast.makeText(this, "Silahkan ambil foto", Toast.LENGTH_SHORT).show()
+            Preferences.deleteImageCamera(this@PreviewWrongActivity)
             startCamera()
         }
 
         binding.toolbarPreview.btnHome.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-                finish()
+            AlertDialog.Builder(this).apply {
+                setTitle("Batalkan Proses")
+                setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
+                setPositiveButton("Ya") { _, _ ->
+                    Preferences.deleteImageCamera(this@PreviewWrongActivity)
+                    Preferences.deleteImageGallery(this@PreviewWrongActivity)
+                    Intent(this@PreviewWrongActivity, MainActivity::class.java).also {
+                        startActivity(it)
+                        finish()
+                    }
+                }
+                setNegativeButton("Tidak") { _, _ -> }
+                create()
+                show()
             }
         }
 
@@ -142,5 +156,21 @@ class PreviewWrongActivity : AppCompatActivity() {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 123
         const val CAMERA_X_RESULT = 200
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Batalkan Proses")
+            setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
+            setPositiveButton("Ya") { _, _ ->
+                Preferences.deleteImageCamera(this@PreviewWrongActivity)
+                Preferences.deleteImageGallery(this@PreviewWrongActivity)
+                super.onBackPressed()
+            }
+            setNegativeButton("Tidak") { _, _ -> }
+            create()
+            show()
+        }
     }
 }

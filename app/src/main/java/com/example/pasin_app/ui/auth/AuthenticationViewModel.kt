@@ -36,35 +36,35 @@ class AuthenticationViewModel(private val pref: UserPreference) : ViewModel() {
         viewModelScope.launch {
             pref.login("token")
         }
-//        _isLoading.value = true
-//        val request = LoginRequest(email, password)
-//        val client = ApiConfig.getApiService().loginUser(request)
-//
-//        client.enqueue(object : Callback<LoginResponse> {
-//            override fun onResponse(
-//                call: Call<LoginResponse>,
-//                response: Response<LoginResponse>
-//            ) {
-//                if (response.isSuccessful){
-//                    val token = response.body()!!.loginResult!!.token.toString()
-//                    viewModelScope.launch {
-//                        pref.login(token)
-//                    }
-//                    _errorMessageLog.value = "success"
-//                    _isLoading.value = false
-//                }else{
-//                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-//                    val errorBody = response.errorBody()?.string() ?: "Unknown error occurred"
-//                    val errorMessage = JSONObject(errorBody).getString("message")
-//                    _errorMessageLog.value = errorMessage
-//                    _isLoading.value = false
-//                }
-//            }
-//            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-//                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
-//                _isLoading.value = false
-//            }
-//        })
+        _isLoading.value = true
+        val request = LoginRequest(email, password)
+        val client = ApiConfig.getApiService().loginUser(request)
+
+        client.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(
+                call: Call<LoginResponse>,
+                response: Response<LoginResponse>
+            ) {
+                if (response.isSuccessful){
+                    val token = response.body()?.loginResult?.token.toString()
+                    viewModelScope.launch {
+                        pref.login(token)
+                    }
+                    _errorMessageLog.value = "success"
+                    _isLoading.value = false
+                }else{
+                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                    val errorBody = response.errorBody()?.string() ?: "Unknown error occurred"
+                    val errorMessage = JSONObject(errorBody).getString("message")
+                    _errorMessageLog.value = errorMessage
+                    _isLoading.value = false
+                }
+            }
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+                _isLoading.value = false
+            }
+        })
     }
 
     private val _errorMessage = MutableLiveData<String>()
@@ -72,40 +72,38 @@ class AuthenticationViewModel(private val pref: UserPreference) : ViewModel() {
 
     fun register(name: String, email: String, password: String) {
         viewModelScope.launch {
-            pref.saveUser(UserModel(name, email, password, false,""))
             _isLoading.value = false
             _errorMessage.value = "success"
         }
-//        _isLoading.value = true
-//        val request = RegisterRequest(name, email, password)
-//        val client = ApiConfig.getApiService().registerUser(request)
-//
-//        client.enqueue(object : Callback<RegisterResponse> {
-//            override fun onResponse(
-//                call: Call<RegisterResponse>,
-//                response: Response<RegisterResponse>
-//            ) {
-//                if (response.isSuccessful) {
-//                    viewModelScope.launch {
-//                        pref.saveUser(UserModel(name, email, password, false,""))
-//                        _isLoading.value = false
-//                        _errorMessage.value = "success"
-//                    }
-//                } else {
-//                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-//                    val errorBody = response.errorBody()?.string() ?: "Unknown error occurred"
-//                    val errorMessage = JSONObject(errorBody).getString("message")
-//                    _isLoading.value = false
-//                    _errorMessage.value = errorMessage
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-//                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
-//                val errorMessage = t.message ?: "Unknown error occurred"
-//                _isLoading.value = false
-//                _errorMessage.value = errorMessage
-//            }
-//        })
+        _isLoading.value = true
+        val request = RegisterRequest(name, email, password)
+        val client = ApiConfig.getApiService().registerUser(request)
+
+        client.enqueue(object : Callback<RegisterResponse> {
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
+                if (response.isSuccessful) {
+                    viewModelScope.launch {
+                        _isLoading.value = false
+                        _errorMessage.value = "success"
+                    }
+                } else {
+                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                    val errorBody = response.errorBody()?.string() ?: "Unknown error occurred"
+                    val errorMessage = JSONObject(errorBody).getString("message")
+                    _isLoading.value = false
+                    _errorMessage.value = errorMessage
+                }
+            }
+
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+                val errorMessage = t.message ?: "Unknown error occurred"
+                _isLoading.value = false
+                _errorMessage.value = errorMessage
+            }
+        })
     }
 }

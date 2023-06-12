@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
 
+
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
@@ -64,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         binding.constraintLayoutHistory.setOnClickListener {
             val intentToHistory = Intent(this@MainActivity, HistoryActivity::class.java)
             startActivity(intentToHistory)
-            finish()
         }
     }
 
@@ -102,9 +103,10 @@ class MainActivity : AppCompatActivity() {
 
             if (myFile != null) {
                 Preferences.saveImageCamera(myFile.path, this)
+                val imagePath = myFile.path
+                Log.d("Preferences", "Saving camera image path: $imagePath")
             }
             startActivity(Intent(this, PreviewActivity::class.java))
-            finish()
         }
     }
 
@@ -126,7 +128,6 @@ class MainActivity : AppCompatActivity() {
             file = myFile
             Preferences.saveImageGallery(selectedImg.toString(), this)
             startActivity(Intent(this, PreviewActivity::class.java))
-            finish()
         }
     }
 

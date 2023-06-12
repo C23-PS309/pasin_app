@@ -14,7 +14,7 @@
 
         <include
             android:id="@+id/toolbar_detail"
-            layout="@layout/toolbar_back_home"
+            layout="@layout/toolbar_back"
             android:elevation="12dp"
             android:outlineProvider="bounds"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +137,7 @@
 
                     <TextView
                         android:id="@+id/tv_pinggang"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/pinggang"
@@ -200,7 +200,7 @@
 
                     <TextView
                         android:id="@+id/tv_pinggul"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/pinggang"
@@ -263,7 +263,7 @@
 
                     <TextView
                         android:id="@+id/tv_dada"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/pinggul"
@@ -326,7 +326,7 @@
 
                     <TextView
                         android:id="@+id/tv_tinggi"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/dada"

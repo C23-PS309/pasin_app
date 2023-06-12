@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityPreviewBinding
 import com.example.pasin_app.ui.home.MainActivity
@@ -32,7 +33,8 @@ class PreviewActivity : AppCompatActivity() {
             binding.apply {
                 if (genderState != "Male") {
                     imageButtonFemale.backgroundTintList = resources.getColorStateList(R.color.gray)
-                    imageButtonMale.backgroundTintList = resources.getColorStateList(R.color.blue_gender)
+                    imageButtonMale.backgroundTintList =
+                        resources.getColorStateList(R.color.blue_gender)
                     genderState = "Male"
                     Log.d("Gender", genderState)
                 }
@@ -51,17 +53,44 @@ class PreviewActivity : AppCompatActivity() {
         }
 
         binding.btnProses.setOnClickListener {
-            Intent(this, ResultActivity::class.java).also {
+            Intent(this, PreviewWrongActivity::class.java).also {
                 startActivity(it)
                 finish()
             }
         }
 
         binding.toolbarPreview.btnHome.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-                finish()
+            AlertDialog.Builder(this).apply {
+                setTitle("Batalkan Proses")
+                setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
+                setPositiveButton("Ya") { _, _ ->
+                    Preferences.deleteImageCamera(this@PreviewActivity)
+                    Preferences.deleteImageGallery(this@PreviewActivity)
+                    Intent(this@PreviewActivity, MainActivity::class.java).also {
+                        startActivity(it)
+                        finish()
+                    }
+                }
+                setNegativeButton("Tidak") { _, _ -> }
+                create()
+                show()
             }
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Batalkan Proses")
+            setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
+            setPositiveButton("Ya") { _, _ ->
+                Preferences.deleteImageCamera(this@PreviewActivity)
+                Preferences.deleteImageGallery(this@PreviewActivity)
+                super.onBackPressed()
+            }
+            setNegativeButton("Tidak") { _, _ -> }
+            create()
+            show()
         }
     }
 }

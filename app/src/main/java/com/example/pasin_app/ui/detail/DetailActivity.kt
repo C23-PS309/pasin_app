@@ -16,18 +16,15 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.toolbarDetail.btnBack.setOnClickListener {
-            Intent(this, HistoryActivity::class.java).also {
-                startActivity(it)
-                finish()
-            }
+            finish()
         }
 
-        binding.toolbarDetail.btnHome.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-                finish()
-            }
-        }
+//        binding.toolbarDetail.btnHome.setOnClickListener {
+//            Intent(this, MainActivity::class.java).also {
+//                startActivity(it)
+//                finish()
+//            }
+//        }
     }
 
     companion object {

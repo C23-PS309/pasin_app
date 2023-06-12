@@ -87,22 +87,6 @@ class HistoryActivity : AppCompatActivity() {
                                     fontFamily = FontFamily(Font(R.font.roboto_bold))
                                 )
                             },
-                            actions = {
-                                IconButton(
-                                    onClick = {
-                                        Intent(this@HistoryActivity, MainActivity::class.java).also {
-                                            startActivity(it)
-                                            finish()
-                                        }
-                                    }
-                                    ) {
-                                    Icon(
-                                        Icons.Filled.Home,
-                                        contentDescription = "Home",
-                                        tint = colorResource(id = R.color.white)
-                                    )
-                                }
-                                },
                             )
                         HistoryPage(
                             startDetailActivity = { historyId -> startDetailActivity(historyId) }
@@ -118,7 +102,6 @@ class HistoryActivity : AppCompatActivity() {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(DetailActivity.EXTRA_ID, historyId)
         startActivity(intent)
-        finish()
     }
 }
 
