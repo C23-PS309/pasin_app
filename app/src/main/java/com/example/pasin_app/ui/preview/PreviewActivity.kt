@@ -16,6 +16,8 @@ import com.example.pasin_app.utils.Preferences
 class PreviewActivity : AppCompatActivity() {
     private val binding by lazy { ActivityPreviewBinding.inflate(layoutInflater) }
     private var genderState: String = ""
+    private var umurUser: Float = 0f
+    private var tinggiUser: Float = 0f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -29,6 +31,7 @@ class PreviewActivity : AppCompatActivity() {
             binding.ivPreview.setImageBitmap(BitmapFactory.decodeFile(selectedImageCamera))
         }
 
+        // Set gender
         binding.imageButtonMale.setOnClickListener {
             binding.apply {
                 if (genderState != "Male") {
@@ -40,7 +43,6 @@ class PreviewActivity : AppCompatActivity() {
                 }
             }
         }
-
         binding.imageButtonFemale.setOnClickListener {
             binding.apply {
                 if (genderState != "Female") {
@@ -53,7 +55,10 @@ class PreviewActivity : AppCompatActivity() {
         }
 
         binding.btnProses.setOnClickListener {
-            Intent(this, PreviewWrongActivity::class.java).also {
+            Log.d("Gender", genderState)
+            umurUser = binding.etUmur.text.toString().toFloat()
+            tinggiUser = binding.etTinggi.text.toString().toFloat()
+            Intent(this, ResultActivity::class.java).also {
                 startActivity(it)
                 finish()
             }
