@@ -17,6 +17,8 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+private const val MAXIMAL_SIZE = 1000000
+
 fun uriToFile(selectedImg: Uri, context: Context): File {
     val contentResolver: ContentResolver = context.contentResolver
     val myFile = createCustomTempFile(context)
@@ -59,8 +61,23 @@ fun rotateFrontCamera() {
     matrix.postRotate(180f)
 }
 
-fun File.reduceFileImage(): File {
-    val bitmap = BitmapFactory.decodeFile(path)
+//fun File.reduceFileImage(): File {
+//    val bitmap = BitmapFactory.decodeFile(path)
+//    var compressQuality = 100
+//    var streamLength: Int
+//    do {
+//        val bmpStream = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+//        val bmpPicByteArray = bmpStream.toByteArray()
+//        streamLength = bmpPicByteArray.size
+//        compressQuality -= 5
+//    } while (streamLength > 1000000)
+//    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(this))
+//    return this
+//}
+
+fun reduceFileImage(file: File): File {
+    val bitmap = BitmapFactory.decodeFile(file.path)
     var compressQuality = 100
     var streamLength: Int
     do {
@@ -69,7 +86,7 @@ fun File.reduceFileImage(): File {
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= 5
-    } while (streamLength > 1000000)
-    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(this))
-    return this
+    } while (streamLength > MAXIMAL_SIZE)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+    return file
 }

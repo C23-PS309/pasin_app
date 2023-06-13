@@ -49,7 +49,7 @@
     <string name="ivGallery_txt">Gallery</string>
     <string name="btnNext_txt">Lanjut</string>
     <string name="tvPinggang_txt">Pinggang</string>
-    <string name="tvPanggul_txt">Panggul</string>
+    <string name="tvPanggul_txt">Pinggul</string>
     <string name="tvDada_txt">Dada</string>
     <string name="tvTinggi_txt">Tinggi</string>
     <string name="contoh_pinggang">55</string>
@@ -65,4 +65,13 @@
     <string name="Umur">Umur</string>
     <string name="xx_tahun">Tahun</string>
     <string name="valueUmur">21</string>
+    <string name="tvUmur_txt">Umur</string>
+    <string name="contoh_umur">22</string>
+    <string name="tvBahu_txt">Bahu</string>
+    <string name="contoh_pose_txt">Contoh Pose Pengambilan Foto</string>
+    <string name="kriteria_pengambilan_txt">Kriteria Pengambilan Foto</string>
+    <string name="kriteria1_txt">1. Seluruh badan harus kelihatan.</string>
+    <string name="kriteria2_txt">2. Badan tegak dan menghadap ke kamera.</string>
+    <string name="kriteria3_txt">3. Gunakanlah  baju yang merepresentasikan bentuk tubuh Anda!</string>
+    <string name="kriteria4_txt">4. Foto dalam orientasi potrait.</string>
 </resources>

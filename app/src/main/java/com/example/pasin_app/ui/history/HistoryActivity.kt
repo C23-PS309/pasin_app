@@ -24,11 +24,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -52,7 +48,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.pasin_app.R
 import com.example.pasin_app.repository.ItemRepository
 import com.example.pasin_app.ui.detail.DetailActivity
-import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.utils.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
@@ -87,7 +82,7 @@ class HistoryActivity : AppCompatActivity() {
                                     fontFamily = FontFamily(Font(R.font.roboto_bold))
                                 )
                             },
-                            )
+                        )
                         HistoryPage(
                             startDetailActivity = { historyId -> startDetailActivity(historyId) }
                         )
@@ -126,9 +121,9 @@ fun HistoryPage(
                         historyId = item.historyID,
                         image = item.photo,
                         name = item.title,
-                        waistValue = item.measureData.waist,
+                        ageValue = item.measureData.waist,
                         hipValue = item.measureData.hip,
-                        chestValue = item.measureData.chest,
+                        shoulderValue = item.measureData.chest,
                         heightValue = item.measureData.height,
                         recommendationValue = item.recommendation,
                         modifier = Modifier
@@ -147,14 +142,21 @@ fun HistoryContent(
     historyId: String,
     image: Int,
     name: String,
-    waistValue: Int,
+    ageValue: Int,
     hipValue: Int,
-    chestValue: Int,
+    shoulderValue: Int,
     heightValue: Int,
     recommendationValue: String,
     modifier: Modifier = Modifier,
     onItemClick: () -> Unit
 ) {
+    val umurTxt = "Umur"
+    val pinggulTxt = "Pinggul"
+    val tinggiTxt = "Tinggi"
+    val bahuTxt = "Bahu"
+    val tahunTxt = "Tahun"
+    val cmTxt = "cm"
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
@@ -194,15 +196,7 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Pinggang",
-                        color = Color.White,
-                        fontSize = 13.sp,
-                        fontFamily = FontFamily(Font(R.font.roboto_regular)),
-                        modifier = Modifier
-                            .weight(1.5f)
-                    )
-                    Text(
-                        text = ":",
+                        text = umurTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
@@ -210,7 +204,15 @@ fun HistoryContent(
                             .weight(1f)
                     )
                     Text(
-                        text = waistValue.toString(),
+                        text = ":",
+                        color = Color.White,
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.roboto_regular)),
+                        modifier = Modifier
+                            .weight(0.7f)
+                    )
+                    Text(
+                        text = ageValue.toString(),
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
@@ -218,7 +220,7 @@ fun HistoryContent(
                             .weight(0.6f)
                     )
                     Text(
-                        text = "cm",
+                        text = tahunTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
@@ -232,12 +234,12 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Pinggul",
+                        text = pinggulTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1.5f)
+                            .weight(1.1f)
                     )
                     Text(
                         text = ":",
@@ -245,18 +247,17 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.75f)
                     )
-                    Text(
-                        text = hipValue.toString(),
+                    Text(text = hipValue.toString(),
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(0.6f)
+                            .weight(1.05f)
                     )
                     Text(
-                        text = "cm",
+                        text = cmTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
@@ -270,12 +271,12 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Dada",
+                        text = bahuTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1.5f)
+                            .weight(1.1f)
                     )
                     Text(
                         text = ":",
@@ -283,18 +284,18 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.75f)
                     )
                     Text(
-                        text = chestValue.toString(),
+                        text = shoulderValue.toString(),
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(0.6f)
+                            .weight(1.05f)
                     )
                     Text(
-                        text = "cm",
+                        text = cmTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
@@ -307,12 +308,12 @@ fun HistoryContent(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Tinggi",
+                        text = tinggiTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1.5f)
+                            .weight(1.1f)
                     )
                     Text(
                         text = ":",
@@ -320,7 +321,7 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
                         modifier = Modifier
-                            .weight(1f)
+                            .weight(0.75f)
                     )
                     Text(
                         text = heightValue.toString(),
@@ -328,10 +329,10 @@ fun HistoryContent(
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_bold)),
                         modifier = Modifier
-                            .weight(0.6f)
+                            .weight(1.05f)
                     )
                     Text(
-                        text = "cm",
+                        text = cmTxt,
                         color = Color.White,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.roboto_regular)),
@@ -391,9 +392,9 @@ fun PreviewContent() {
         historyId = "123",
         image = R.drawable.contoh_foto,
         name = "Bob Sadino Hula Hula",
-        waistValue = 65,
+        ageValue = 65,
         hipValue = 102,
-        chestValue = 23,
+        shoulderValue = 23,
         heightValue = 160,
         recommendationValue = "XL",
         onItemClick = {}

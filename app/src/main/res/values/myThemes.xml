@@ -3,7 +3,7 @@
     <style name="Theme.myThemes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/yellow</item> <!-- Button -->
+        <item name="colorPrimary">@color/dark_blue</item> <!-- Button -->
         <item name="colorPrimaryVariant">@color/light_blue</item>
         <item name="colorOnPrimary">@color/white</item>
 

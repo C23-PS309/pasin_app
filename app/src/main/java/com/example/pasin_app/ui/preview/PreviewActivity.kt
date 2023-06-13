@@ -1,5 +1,6 @@
 package com.example.pasin_app.ui.preview
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -7,20 +8,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityPreviewBinding
+import com.example.pasin_app.model.UserPreference
+import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.result.ResultActivity
 import com.example.pasin_app.utils.Preferences
+import com.example.pasin_app.utils.ViewModelFactory
+import java.io.File
 
+private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
 class PreviewActivity : AppCompatActivity() {
     private val binding by lazy { ActivityPreviewBinding.inflate(layoutInflater) }
     private var genderState: String = ""
     private var umurUser: Float = 0f
     private var tinggiUser: Float = 0f
+    private lateinit var previewViewModel: PreviewViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setupView()
 
         val selectedImage = Preferences.getImageGallery(this)
         val selectedImageCamera = Preferences.getImageCamera(this)
@@ -56,11 +68,19 @@ class PreviewActivity : AppCompatActivity() {
 
         binding.btnProses.setOnClickListener {
             Log.d("Gender", genderState)
+            val gender: Boolean = genderState == "Male"
             umurUser = binding.etUmur.text.toString().toFloat()
             tinggiUser = binding.etTinggi.text.toString().toFloat()
-            Intent(this, ResultActivity::class.java).also {
-                startActivity(it)
-                finish()
+
+            val image: File = if (selectedImage != null) {
+                File(selectedImage)
+            } else {
+                File(selectedImageCamera!!)
+            }
+
+            previewViewModel.getUser().observe(this){
+                val token = it.token
+                previewViewModel.processData(image, umurUser, tinggiUser, gender, token)
             }
         }
 
@@ -79,6 +99,35 @@ class PreviewActivity : AppCompatActivity() {
                 setNegativeButton("Tidak") { _, _ -> }
                 create()
                 show()
+            }
+        }
+
+        resultObserver()
+    }
+
+    private fun setupView() {
+        previewViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(context = this, pref = UserPreference.getInstance(dataStore))
+        )[PreviewViewModel::class.java]
+    }
+
+    private fun resultObserver() {
+        previewViewModel.message.observe(this) {
+            when(it){
+                "success" -> {
+                    Intent(this, ResultActivity::class.java).also {
+                        intent.putExtra(DetailActivity.EXTRA_ID, "id")
+                        startActivity(it)
+                        finish()
+                    }
+                }
+                else -> {
+                    Intent(this, PreviewWrongActivity::class.java).also {
+                        startActivity(it)
+                        finish()
+                    }
+                }
             }
         }
     }

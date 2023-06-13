@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
 
-
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS

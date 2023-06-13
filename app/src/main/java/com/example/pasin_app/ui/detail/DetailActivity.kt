@@ -1,30 +1,53 @@
 package com.example.pasin_app.ui.detail
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.databinding.ActivityDetailBinding
+import com.example.pasin_app.model.UserPreference
 import com.example.pasin_app.ui.history.HistoryActivity
 import com.example.pasin_app.ui.home.MainActivity
+import com.example.pasin_app.ui.result.ResultActivity
+import com.example.pasin_app.ui.result.ResultViewModel
+import com.example.pasin_app.utils.ViewModelFactory
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class DetailActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
+    private lateinit var resultViewModel: ResultViewModel
+    val id = intent.getStringExtra(ResultActivity.EXTRA_ID).toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setupView()
+
+        resultViewModel.getUser().observe(this){
+            val token = it.token
+            resultViewModel.getResult(id, "Bearer $token")
+        }
+
+        resultViewModel.history.observe(this){
+
+        }
+
         binding.toolbarDetail.btnBack.setOnClickListener {
             finish()
         }
+    }
 
-//        binding.toolbarDetail.btnHome.setOnClickListener {
-//            Intent(this, MainActivity::class.java).also {
-//                startActivity(it)
-//                finish()
-//            }
-//        }
+    private fun setupView() {
+        resultViewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(context = this, pref = UserPreference.getInstance(dataStore))
+        )[ResultViewModel::class.java]
     }
 
     companion object {

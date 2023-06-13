@@ -8,6 +8,8 @@ import com.example.pasin_app.repository.ItemRepository
 import com.example.pasin_app.ui.auth.AuthenticationViewModel
 import com.example.pasin_app.ui.history.HistoryViewModel
 import com.example.pasin_app.ui.home.MainViewModel
+import com.example.pasin_app.ui.preview.PreviewViewModel
+import com.example.pasin_app.ui.result.ResultViewModel
 
 class ViewModelFactory(private val repository: ItemRepository? = null,
                        private val context: Context? = null,
@@ -24,6 +26,12 @@ class ViewModelFactory(private val repository: ItemRepository? = null,
             }
             modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
                 repository?.let { HistoryViewModel(it) } as T
+            }
+            modelClass.isAssignableFrom(PreviewViewModel::class.java) -> {
+                pref?.let { PreviewViewModel(it) } as T
+            }
+            modelClass.isAssignableFrom(ResultViewModel::class.java) -> {
+                pref?.let { ResultViewModel(it) } as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
