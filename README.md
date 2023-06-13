@@ -30,7 +30,16 @@ Create machine learning models. The ML_Model is a machine learning model used in
 **[Step 4]:** [Instructions for step 4]
 
 ## Usage
-Once you have successfully installed [App Name], you can [describe how to use the app, including any necessary setup or configuration]. Whether you're a novice or an experienced user, [App Name] offers a seamless experience that caters to your needs.
+1. Open the app.
+2. Perform user authentication (login/register).
+3. Select the image capture method for processing.
+4. Make sure the image meets the criteria.
+5. Enter age, height, and gender data.
+6. Press the "Proses" button and wait for the prediction process.
+7. If the image process fails because it does not meet the criteria, repeat steps 2 to 6.
+8. If the image meets the criteria, the measurement results and speed recommendations will be displayed.
+9. You can give the measurement a title.
+10. The measurement results will be stored in the measurement history list.
 
 ## Contributing
 We welcome contributions from the open-source community to enhance [App Name]. If you have any ideas, bug reports, or feature requests, please follow the guidelines in [CONTRIBUTING.md](link to contributing guidelines) to contribute to the project.
