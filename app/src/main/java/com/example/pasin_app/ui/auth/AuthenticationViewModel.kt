@@ -33,9 +33,6 @@ class AuthenticationViewModel(private val pref: UserPreference) : ViewModel() {
     val errorMessageLog: LiveData<String> = _errorMessageLog
 
     fun login(email: String, password: String) {
-        viewModelScope.launch {
-            pref.login("token")
-        }
         _isLoading.value = true
         val request = LoginRequest(email, password)
         val client = ApiConfig.getApiService().loginUser(request)
@@ -47,8 +44,9 @@ class AuthenticationViewModel(private val pref: UserPreference) : ViewModel() {
             ) {
                 if (response.isSuccessful){
                     val token = response.body()?.loginResult?.token.toString()
+                    val id = response.body()?.loginResult?.userId.toString()
                     viewModelScope.launch {
-                        pref.login(token)
+                        pref.login(token, id)
                     }
                     _errorMessageLog.value = "success"
                     _isLoading.value = false
@@ -84,7 +82,7 @@ class AuthenticationViewModel(private val pref: UserPreference) : ViewModel() {
                 call: Call<RegisterResponse>,
                 response: Response<RegisterResponse>
             ) {
-                if (response.isSuccessful) {
+                if (response.body()?.error == false) {
                     viewModelScope.launch {
                         _isLoading.value = false
                         _errorMessage.value = "success"

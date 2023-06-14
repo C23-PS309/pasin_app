@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
 
+
+
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
@@ -79,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
+            Log.d("TAG", "onCreate: ${user.id}")
         }
     }
 

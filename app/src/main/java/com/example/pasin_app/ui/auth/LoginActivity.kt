@@ -47,9 +47,9 @@ class LoginActivity : AppCompatActivity() {
                 }
             } else if (passwordUser.length >= 8) {
                 authViewModel.login(emailUser, passwordUser)
-                startActivity(Intent(this, MainActivity::class.java))
-                Toast.makeText(this, "Berhasil Login", Toast.LENGTH_SHORT).show()
-                finish()
+//                startActivity(Intent(this, MainActivity::class.java))
+//                Toast.makeText(this, "Berhasil Login", Toast.LENGTH_SHORT).show()
+//                finish()
             }
 
             authViewModel.errorMessageLog.observe(this){

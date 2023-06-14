@@ -15,7 +15,7 @@ class MainViewModel(private val pref: UserPreference? = null) : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     fun getUser(): LiveData<UserModel> {
-        return (pref?.getUser()?.asLiveData() ?: UserModel("", "", "", false, "")) as LiveData<UserModel>
+        return (pref?.getUser()?.asLiveData() ?: UserModel("", "", "", false, "", "")) as LiveData<UserModel>
     }
 
     fun logout() {
