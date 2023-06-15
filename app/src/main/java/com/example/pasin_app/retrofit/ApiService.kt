@@ -1,11 +1,11 @@
 package com.example.pasin_app.retrofit
 
+import com.example.pasin_app.model.HistoryResponse
 import com.example.pasin_app.model.LoginRequest
 import com.example.pasin_app.model.LoginResponse
 import com.example.pasin_app.model.ProcessResponse
 import com.example.pasin_app.model.RegisterRequest
 import com.example.pasin_app.model.RegisterResponse
-import com.example.pasin_app.model.ResultResponse
 import com.example.pasin_app.model.ResultResponseItem
 import com.example.pasin_app.model.UpdateResponse
 import okhttp3.MultipartBody
@@ -42,6 +42,12 @@ interface ApiService {
         @Path("detail_id") id: String,
         @Header("Authorization") token: String
     ): Call<ArrayList<ResultResponseItem>>
+
+    @GET ("/history/{id}")
+    fun getHistory(
+        @Path("id") id: String,
+        @Header("Authorization") token: String
+    ): Call<HistoryResponse>
 
     @PATCH("/history/data/{detail_id}")
     fun updateDetail(

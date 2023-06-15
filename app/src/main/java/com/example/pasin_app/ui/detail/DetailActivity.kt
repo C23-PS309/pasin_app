@@ -1,7 +1,6 @@
 package com.example.pasin_app.ui.detail
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.datastore.core.DataStore
@@ -10,8 +9,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.databinding.ActivityDetailBinding
 import com.example.pasin_app.model.UserPreference
-import com.example.pasin_app.ui.history.HistoryActivity
-import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.result.ResultActivity
 import com.example.pasin_app.ui.result.ResultViewModel
 import com.example.pasin_app.utils.ViewModelFactory
@@ -29,13 +26,13 @@ class DetailActivity : AppCompatActivity() {
 
         setupView()
 
+        binding.btnEdit.setOnClickListener {
+            binding.btnEdit.animate().scaleX(1.5f).scaleY(1.5f).setDuration(200).start()
+        }
+
         resultViewModel.getUser().observe(this){
             val token = it.token
             resultViewModel.getResult(id, "Bearer $token")
-        }
-
-        resultViewModel.history.observe(this){
-
         }
 
         binding.toolbarDetail.btnBack.setOnClickListener {
