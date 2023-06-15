@@ -22,7 +22,10 @@ import com.example.pasin_app.utils.ViewModelFactory
 import com.example.pasin_app.utils.uriToFile
 import java.io.File
 
-private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(
+    name = "settings"
+)
+
 class PreviewActivity : AppCompatActivity() {
     private val binding by lazy { ActivityPreviewBinding.inflate(layoutInflater) }
     private var genderState: String = ""
@@ -73,27 +76,39 @@ class PreviewActivity : AppCompatActivity() {
             val gender: Boolean = genderState == "Male"
 
             when {
-                umurUser == 0f -> {
+                binding.etUmur.text == null -> {
                     binding.etUmur.error = "Umur tidak boleh kosong"
                 }
-                tinggiUser == 0f -> {
+
+                binding.etTinggi.text == null -> {
                     binding.etTinggi.error = "Tinggi tidak boleh kosong"
                 }
+
                 genderState == "" -> {
-                    binding.imageButtonMale.backgroundTintList = resources.getColorStateList(R.color.gray)
-                    binding.imageButtonFemale.backgroundTintList = resources.getColorStateList(R.color.gray)
-                }else -> {
+                    binding.imageButtonMale.backgroundTintList =
+                        resources.getColorStateList(R.color.gray)
+                    binding.imageButtonFemale.backgroundTintList =
+                        resources.getColorStateList(R.color.gray)
+                }
+
+                else -> {
+
                     umurUser = binding.etUmur.text.toString().toFloat()
                     tinggiUser = binding.etTinggi.text.toString().toFloat()
 
-
                     val imageUri: String? = Preferences.getImageGallery(this)
-                    val image: File? = if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
+                    val image: File? =
+                        if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
 
-                    previewViewModel.getUser().observe(this){
-                        val token = it.token
-                        previewViewModel.processData(image, umurUser, tinggiUser, gender, "Bearer $token", it.id)
+                    Intent(this, ResultActivity::class.java).also {
+                        intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
+                        startActivity(it)
+                        finish()
                     }
+//                    previewViewModel.getUser().observe(this){
+//                        val token = it.token
+//                        previewViewModel.processData(image, umurUser, tinggiUser, gender, "Bearer $token", it.id)
+//                    }
                 }
             }
         }
@@ -115,8 +130,7 @@ class PreviewActivity : AppCompatActivity() {
                 show()
             }
         }
-
-        resultObserver()
+//        resultObserver()
     }
 
     private fun setupView() {
@@ -126,25 +140,25 @@ class PreviewActivity : AppCompatActivity() {
         )[PreviewViewModel::class.java]
     }
 
-    private fun resultObserver() {
-        previewViewModel.message.observe(this) {
-            when(it){
-                "success" -> {
-                    Intent(this, ResultActivity::class.java).also {
-                        intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
-                        startActivity(it)
-                        finish()
-                    }
-                }
-                else -> {
-                    Intent(this, PreviewWrongActivity::class.java).also {
-                        startActivity(it)
-                        finish()
-                    }
-                }
-            }
-        }
-    }
+//    private fun resultObserver() {
+//        previewViewModel.message.observe(this) {
+//            when(it){
+//                "success" -> {
+//                    Intent(this, ResultActivity::class.java).also {
+//                        intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
+//                        startActivity(it)
+//                        finish()
+//                    }
+//                }
+//                else -> {
+//                    Intent(this, PreviewWrongActivity::class.java).also {
+//                        startActivity(it)
+//                        finish()
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {

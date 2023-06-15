@@ -92,11 +92,11 @@ class ResultActivity : AppCompatActivity() {
                     .setTitle("Judul Pengukuran")
                     .setMessage("Apakah Anda ingin menyimpan perubahan judul pengukuran?")
                     .setPositiveButton("Simpan") { dialog, _ ->
-                        resultViewModel.saveTitle(
-                            intent.getStringExtra(EXTRA_ID).toString(),
-                            "Bearer ${resultViewModel.getUser().value?.token}",
-                            binding.resultEdit.text.toString()
-                        )
+//                        resultViewModel.saveTitle(
+//                            intent.getStringExtra(EXTRA_ID).toString(),
+//                            "Bearer ${resultViewModel.getUser().value?.token}",
+//                            binding.resultEdit.text.toString()
+//                        )
                         dialog.dismiss()
                         Intent(this, HistoryActivity::class.java).also {
                             startActivity(it)
@@ -129,11 +129,11 @@ class ResultActivity : AppCompatActivity() {
                 .setTitle("Judul Pengukuran")
                 .setMessage("Apakah Anda ingin menyimpan perubahan judul pengukuran?")
                 .setPositiveButton("Simpan") { dialog, _ ->
-                    resultViewModel.saveTitle(
-                        intent.getStringExtra(EXTRA_ID).toString(),
-                        "Bearer ${resultViewModel.getUser().value?.token}",
-                        binding.resultEdit.text.toString()
-                    )
+//                    resultViewModel.saveTitle(
+//                        intent.getStringExtra(EXTRA_ID).toString(),
+//                        "Bearer ${resultViewModel.getUser().value?.token}",
+//                        binding.resultEdit.text.toString()
+//                    )
                     dialog.dismiss()
                     super.onBackPressed()
                 }
