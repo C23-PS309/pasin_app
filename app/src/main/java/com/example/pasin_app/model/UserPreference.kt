@@ -48,7 +48,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val PASSWORD_KEY = stringPreferencesKey("password")
         private val STATE_KEY = booleanPreferencesKey("state")
         private val TOKEN_KEY = stringPreferencesKey("token")
-        private val ID_KEY = stringPreferencesKey("token")
+        private val ID_KEY = stringPreferencesKey("userId")
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {
                 val instance = UserPreference(dataStore)

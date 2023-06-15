@@ -81,7 +81,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            Log.d("TAG", "onCreate: ${user.id}")
+            Log.d("ID", "onCreate: ${user.id}")
+            Log.d("TOKEN", "onCreate: ${user.token}")
         }
     }
 

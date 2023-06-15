@@ -7,6 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.example.pasin_app.model.History
+import com.example.pasin_app.model.ResultResponse
+import com.example.pasin_app.model.ResultResponseItem
+import com.example.pasin_app.model.UpdateResponse
 import com.example.pasin_app.model.UserModel
 import com.example.pasin_app.model.UserPreference
 import com.example.pasin_app.retrofit.ApiConfig
@@ -15,8 +18,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ResultViewModel(private val pref: UserPreference) : ViewModel() {
-    private val _history = MutableLiveData<History>()
-    val history: LiveData<History> = _history
+    private val _history = MutableLiveData<ResultResponseItem>()
+    val history: LiveData<ResultResponseItem> = _history
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -31,26 +34,49 @@ class ResultViewModel(private val pref: UserPreference) : ViewModel() {
     fun getResult(id: String, token: String){
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetail(id, token)
-//        client.enqueue(object : Callback<ResultResponse> {
-//            override fun onResponse(
-//                call: Call<ResultResponse>,
-//                response: Response<ResultResponse>
-//            ) {
-//                _isLoading.value = false
-//                if(response.isSuccessful){
-//                    val responseBody = response.body()
-//                    if (responseBody != null) {
-//                        _history.value = responseBody?.history
-//                    }
-//                }else{
-//                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResultResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
-//            }
-//        })
+        client.enqueue(object : Callback<ArrayList<ResultResponseItem>> {
+            override fun onResponse(
+                call: Call<ArrayList<ResultResponseItem>>,
+                response: Response<ArrayList<ResultResponseItem>>
+            ) {
+                _isLoading.value = false
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        _history.value = responseBody?.get(0)
+                    }
+                }else{
+                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<ResultResponseItem>>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    fun saveTitle(id: String, token: String, title: String){
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().updateDetail(id, token, title)
+        client.enqueue(object : Callback<UpdateResponse> {
+            override fun onResponse(
+                call: Call<UpdateResponse>,
+                response: Response<UpdateResponse>
+            ) {
+                _isLoading.value = false
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                }else{
+                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+            }
+        })
     }
 }

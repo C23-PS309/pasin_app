@@ -2,14 +2,19 @@ package com.example.pasin_app.retrofit
 
 import com.example.pasin_app.model.LoginRequest
 import com.example.pasin_app.model.LoginResponse
+import com.example.pasin_app.model.ProcessResponse
 import com.example.pasin_app.model.RegisterRequest
 import com.example.pasin_app.model.RegisterResponse
+import com.example.pasin_app.model.ResultResponse
+import com.example.pasin_app.model.ResultResponseItem
+import com.example.pasin_app.model.UpdateResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
@@ -22,18 +27,26 @@ interface ApiService {
     fun loginUser(@Body request: LoginRequest): Call<LoginResponse>
 
     @Multipart
-    @POST("/process")
+    @POST("/history/{user_id}")
     fun processData(
+        @Path("user_id") userId: String,
         @Part file: MultipartBody.Part,
         @Part("umur") umur: Float,
         @Part("tinggi") tinggi: Float,
         @Part("gender") gender: Boolean,
         @Header("Authorization") token: String
-    ): Call<LoginResponse>
+    ): Call<ProcessResponse>
 
-    @GET ("/process")
+    @GET ("/history/data/{detail_id}")
     fun getDetail(
-        @Path("id") id: String,
+        @Path("detail_id") id: String,
         @Header("Authorization") token: String
-    ): Call<LoginResponse>
+    ): Call<ArrayList<ResultResponseItem>>
+
+    @PATCH("/history/data/{detail_id}")
+    fun updateDetail(
+        @Path("detail_id") id: String,
+        @Header("Authorization") token: String,
+        @Part("nama_history") nama_history: String
+    ): Call<UpdateResponse>
 }

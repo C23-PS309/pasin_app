@@ -19,6 +19,7 @@ import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.result.ResultActivity
 import com.example.pasin_app.utils.Preferences
 import com.example.pasin_app.utils.ViewModelFactory
+import com.example.pasin_app.utils.uriToFile
 import java.io.File
 
 private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
@@ -72,15 +73,12 @@ class PreviewActivity : AppCompatActivity() {
             umurUser = binding.etUmur.text.toString().toFloat()
             tinggiUser = binding.etTinggi.text.toString().toFloat()
 
-            val image: File = if (selectedImage != null) {
-                File(selectedImage)
-            } else {
-                File(selectedImageCamera!!)
-            }
+            val imageUri: String? = Preferences.getImageGallery(this)
+            val image: File? = if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
 
             previewViewModel.getUser().observe(this){
                 val token = it.token
-                previewViewModel.processData(image, umurUser, tinggiUser, gender, token)
+                previewViewModel.processData(image, umurUser, tinggiUser, gender, "Bearer $token", it.id)
             }
         }
 
@@ -117,7 +115,7 @@ class PreviewActivity : AppCompatActivity() {
             when(it){
                 "success" -> {
                     Intent(this, ResultActivity::class.java).also {
-                        intent.putExtra(DetailActivity.EXTRA_ID, "id")
+                        intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
                         startActivity(it)
                         finish()
                     }

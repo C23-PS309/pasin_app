@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.R
+import com.example.pasin_app.custom_view.ResultEditText
 import com.example.pasin_app.databinding.ActivityResultBinding
 import com.example.pasin_app.model.UserPreference
 import com.example.pasin_app.ui.history.HistoryActivity
@@ -20,17 +22,20 @@ class ResultActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityResultBinding.inflate(layoutInflater) }
     private lateinit var resultViewModel: ResultViewModel
-    val id = intent.getStringExtra(EXTRA_ID).toString()
+    private lateinit var resultEditText: ResultEditText
     private var genderState: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        resultEditText = binding.resultEdit
+
         setupView()
 
         resultViewModel.getUser().observe(this){
             val token = it.token
+            val id = intent.getStringExtra(EXTRA_ID).toString()
             resultViewModel.getResult(id, "Bearer $token")
         }
 
@@ -53,16 +58,60 @@ class ResultActivity : AppCompatActivity() {
         }
 
         binding.btnHome.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-                finish()
+            if (resultEditText.hasInput()) {
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                    .setTitle("Judul Pengukuran")
+                    .setMessage("Apakah Anda ingin menyimpan perubahan judul pengukuran?")
+                    .setPositiveButton("Simpan") { dialog, _ ->
+                        resultViewModel.saveTitle(
+                            intent.getStringExtra(EXTRA_ID).toString(),
+                            "Bearer ${resultViewModel.getUser().value?.token}",
+                            binding.resultEdit.text.toString()
+                        )
+                        dialog.dismiss()
+                        Intent(this, MainActivity::class.java).also {
+                            startActivity(it)
+                            finish()
+                        }
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                alertDialogBuilder.create().show()
+            } else {
+                Intent(this, MainActivity::class.java).also {
+                    startActivity(it)
+                    finish()
+                }
             }
         }
 
         binding.btnHistory.setOnClickListener {
-            Intent(this, HistoryActivity::class.java).also {
-                startActivity(it)
-                finish()
+            if (resultEditText.hasInput()) {
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                    .setTitle("Judul Pengukuran")
+                    .setMessage("Apakah Anda ingin menyimpan perubahan judul pengukuran?")
+                    .setPositiveButton("Simpan") { dialog, _ ->
+                        resultViewModel.saveTitle(
+                            intent.getStringExtra(EXTRA_ID).toString(),
+                            "Bearer ${resultViewModel.getUser().value?.token}",
+                            binding.resultEdit.text.toString()
+                        )
+                        dialog.dismiss()
+                        Intent(this, HistoryActivity::class.java).also {
+                            startActivity(it)
+                            finish()
+                        }
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                alertDialogBuilder.create().show()
+            } else {
+                Intent(this, HistoryActivity::class.java).also {
+                    startActivity(it)
+                    finish()
+                }
             }
         }
     }
@@ -72,6 +121,29 @@ class ResultActivity : AppCompatActivity() {
             this,
             ViewModelFactory(context = this, pref = UserPreference.getInstance(dataStore))
         )[ResultViewModel::class.java]
+    }
+
+    override fun onBackPressed() {
+        if (resultEditText.hasInput()) {
+            val alertDialogBuilder = AlertDialog.Builder(this)
+                .setTitle("Judul Pengukuran")
+                .setMessage("Apakah Anda ingin menyimpan perubahan judul pengukuran?")
+                .setPositiveButton("Simpan") { dialog, _ ->
+                    resultViewModel.saveTitle(
+                        intent.getStringExtra(EXTRA_ID).toString(),
+                        "Bearer ${resultViewModel.getUser().value?.token}",
+                        binding.resultEdit.text.toString()
+                    )
+                    dialog.dismiss()
+                    super.onBackPressed()
+                }
+                .setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
+            alertDialogBuilder.create().show()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     companion object {

@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.pasin_app.model.LoginResponse
+import com.example.pasin_app.model.ProcessResponse
 import com.example.pasin_app.model.UserModel
 import com.example.pasin_app.model.UserPreference
 import com.example.pasin_app.retrofit.ApiConfig
@@ -31,40 +31,46 @@ class PreviewViewModel(private val pref: UserPreference) : ViewModel() {
         return pref.getUser().asLiveData()
     }
 
-    fun processData(image: File?, umur: Float, tinggi: Float, gender: Boolean, token: String){
-        if(image != null){
-            val file = reduceFileImage(image as File)
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
-            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "photo",
-                file.name,
-                requestImageFile
-            )
-            _isLoading.value = true
-            val client = ApiConfig.getApiService().processData(imageMultipart, umur, tinggi, gender, token)
-//            client.enqueue(object: Callback<ProcessResponse> {
-//                override fun onResponse(
-//                    call: Call<ProcessResponse>,
-//                    response: Response<ProcessResponse>
-//                ) {
-//                    if(response.isSuccessful){
-//                        _message.value = "success"
-//                        _isLoading.value = false
-//                    }else{
-//                        Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-//                        val errorBody = response.errorBody()?.string() ?: "Unknown error occurred"
-//                        val errorMessage = JSONObject(errorBody).getString("message")
-//                        _message.value = errorMessage
-//                        _isLoading.value = false
-//                    }
-//                }
-//                override fun onFailure(call: Call<ProcessResponse>, t: Throwable) {
-//                    _isLoading.value = false
-//                    Log.e(ContentValues.TAG, "onFailure: ${t.message}")
-//                }
-//            })
-        }else{
+    fun processData(image: File?, umur: Float, tinggi: Float, gender: Boolean, token: String, id:String) {
+        if (image != null) {
+            val file = reduceFileImage(image)
+            if (file != null) {
+                val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                    "photo",
+                    file.name,
+                    requestImageFile
+                )
+                _isLoading.value = true
+                val client = ApiConfig.getApiService().processData(id, imageMultipart, umur, tinggi, gender, token)
+                client.enqueue(object: Callback<ProcessResponse> {
+                    override fun onResponse(
+                        call: Call<ProcessResponse>,
+                        response: Response<ProcessResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            _message.value = "success"
+                            _isLoading.value = false
+                        } else {
+                            Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                            val errorBody = response.errorBody()?.string() ?: "Unknown error occurred"
+                            val errorMessage = JSONObject(errorBody).getString("message")
+                            _message.value = errorMessage
+                            _isLoading.value = false
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ProcessResponse>, t: Throwable) {
+                        _isLoading.value = false
+                        Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+                    }
+                })
+            } else {
+                _message.value = "Failed to reduce file size"
+            }
+        } else {
             _message.value = "Mohon masukkan gambar terlebih dahulu"
         }
     }
+
 }

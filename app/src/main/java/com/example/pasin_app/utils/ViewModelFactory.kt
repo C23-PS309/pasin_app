@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.model.UserPreference
 import com.example.pasin_app.repository.ItemRepository
 import com.example.pasin_app.ui.auth.AuthenticationViewModel
-import com.example.pasin_app.ui.history.HistoryViewModel
 import com.example.pasin_app.ui.home.MainViewModel
 import com.example.pasin_app.ui.preview.PreviewViewModel
 import com.example.pasin_app.ui.result.ResultViewModel
@@ -24,9 +23,9 @@ class ViewModelFactory(private val repository: ItemRepository? = null,
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 pref?.let { MainViewModel(it) } as T
             }
-            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
-                repository?.let { HistoryViewModel(it) } as T
-            }
+//            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
+//                pref?.let { HistoryViewModel(it) } as T
+//            }
             modelClass.isAssignableFrom(PreviewViewModel::class.java) -> {
                 pref?.let { PreviewViewModel(it) } as T
             }
