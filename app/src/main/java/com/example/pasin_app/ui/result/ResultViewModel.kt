@@ -6,8 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.example.pasin_app.model.History
-import com.example.pasin_app.model.ResultResponse
 import com.example.pasin_app.model.ResultResponseItem
 import com.example.pasin_app.model.UpdateResponse
 import com.example.pasin_app.model.UserModel
