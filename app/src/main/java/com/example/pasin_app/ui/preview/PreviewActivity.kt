@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.preferencesDataStore
@@ -14,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityPreviewBinding
 import com.example.pasin_app.model.UserPreference
+import com.example.pasin_app.ui.CriteriaActivity
 import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.result.ResultActivity
@@ -32,6 +35,7 @@ class PreviewActivity : AppCompatActivity() {
     private var umurUser: Float = 0f
     private var tinggiUser: Float = 0f
     private lateinit var previewViewModel: PreviewViewModel
+    private lateinit var handler: Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -47,6 +51,10 @@ class PreviewActivity : AppCompatActivity() {
             binding.ivPreview.setImageBitmap(BitmapFactory.decodeFile(selectedImageCamera))
         }
 
+        binding.button.setOnClickListener {
+            val intent = Intent(this, CriteriaActivity::class.java)
+            startActivity(intent)
+        }
         // Set gender
         binding.imageButtonMale.setOnClickListener {
             binding.apply {
@@ -93,18 +101,25 @@ class PreviewActivity : AppCompatActivity() {
 
                 else -> {
 
-                    umurUser = binding.etUmur.text.toString().toFloat()
-                    tinggiUser = binding.etTinggi.text.toString().toFloat()
+//                    umurUser = binding.etUmur.text.toString().toFloat()
+//                    tinggiUser = binding.etTinggi.text.toString().toFloat()
 
                     val imageUri: String? = Preferences.getImageGallery(this)
                     val image: File? =
                         if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
 
-                    Intent(this, ResultActivity::class.java).also {
-                        intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
-                        startActivity(it)
-                        finish()
-                    }
+                    handler = Handler()
+                    showLoading(true)
+
+                    handler.postDelayed({
+                        Intent(this, ResultActivity::class.java).also {
+                            intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
+                            startActivity(it)
+                            finish()
+                        }
+                        showLoading(false)
+                    }, 2000)
+
 //                    previewViewModel.getUser().observe(this){
 //                        val token = it.token
 //                        previewViewModel.processData(image, umurUser, tinggiUser, gender, "Bearer $token", it.id)
@@ -159,6 +174,14 @@ class PreviewActivity : AppCompatActivity() {
 //            }
 //        }
 //    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {

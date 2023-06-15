@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -63,11 +64,11 @@ class ResultActivity : AppCompatActivity() {
                     .setTitle("Judul Pengukuran")
                     .setMessage("Apakah Anda ingin menyimpan perubahan judul pengukuran?")
                     .setPositiveButton("Simpan") { dialog, _ ->
-                        resultViewModel.saveTitle(
-                            intent.getStringExtra(EXTRA_ID).toString(),
-                            "Bearer ${resultViewModel.getUser().value?.token}",
-                            binding.resultEdit.text.toString()
-                        )
+//                        resultViewModel.saveTitle(
+//                            intent.getStringExtra(EXTRA_ID).toString(),
+//                            "Bearer ${resultViewModel.getUser().value?.token}",
+//                            binding.resultEdit.text.toString()
+//                        )
                         dialog.dismiss()
                         Intent(this, MainActivity::class.java).also {
                             startActivity(it)
