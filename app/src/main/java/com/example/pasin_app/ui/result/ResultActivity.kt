@@ -39,10 +39,6 @@ class ResultActivity : AppCompatActivity() {
             resultViewModel.getResult(id, "Bearer $token")
         }
 
-        resultViewModel.history.observe(this){
-
-        }
-
         genderState = true
 
         if (genderState) {

@@ -26,9 +26,9 @@ class DetailActivity : AppCompatActivity() {
 
         setupView()
 
-        binding.btnEdit.setOnClickListener {
-            binding.btnEdit.animate().scaleX(1.5f).scaleY(1.5f).setDuration(200).start()
-        }
+//        binding.btnEdit.setOnClickListener {
+//            binding.btnEdit.animate().scaleX(1.5f).scaleY(1.5f).setDuration(200).start()
+//        }
 
         resultViewModel.getUser().observe(this){
             val token = it.token

@@ -1,5 +1,6 @@
 package com.example.pasin_app.retrofit
 
+import com.example.pasin_app.model.HistoryData
 import com.example.pasin_app.model.HistoryResponse
 import com.example.pasin_app.model.LoginRequest
 import com.example.pasin_app.model.LoginResponse
@@ -47,7 +48,7 @@ interface ApiService {
     fun getHistory(
         @Path("id") id: String,
         @Header("Authorization") token: String
-    ): Call<HistoryResponse>
+    ): Call<HistoryData>
 
     @PATCH("/history/data/{detail_id}")
     fun updateDetail(

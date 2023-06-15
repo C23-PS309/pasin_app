@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.foundation.Image
@@ -51,7 +52,17 @@ import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.utils.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 class HistoryActivity : AppCompatActivity() {
+
+    private val historyViewModel by viewModels<HistoryViewModel>(
+        factoryProducer = {
+            ViewModelFactory(
+                context = this,
+                pref = UserPreference.getInstance(dataStore)
+            )
+        }
+    )
 
 //    @OptIn(ExperimentalMaterial3Api::class)
 //    override fun onCreate(savedInstanceState: Bundle?) {
