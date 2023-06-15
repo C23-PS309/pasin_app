@@ -20,7 +20,7 @@ import com.example.pasin_app.ui.CriteriaActivity
 import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.ui.result.ResultActivity
-import com.example.pasin_app.utils.Preferences
+import com.example.pasin_app.utils.sharedPreferences
 import com.example.pasin_app.utils.ViewModelFactory
 import com.example.pasin_app.utils.uriToFile
 import java.io.File
@@ -42,8 +42,8 @@ class PreviewActivity : AppCompatActivity() {
 
         setupView()
 
-        val selectedImage = Preferences.getImageGallery(this)
-        val selectedImageCamera = Preferences.getImageCamera(this)
+        val selectedImage = sharedPreferences.getImageGallery(this)
+        val selectedImageCamera = sharedPreferences.getImageCamera(this)
 
         if (selectedImage != null) {
             binding.ivPreview.setImageURI(Uri.parse(selectedImage))
@@ -101,10 +101,10 @@ class PreviewActivity : AppCompatActivity() {
 
                 else -> {
 
-//                    umurUser = binding.etUmur.text.toString().toFloat()
-//                    tinggiUser = binding.etTinggi.text.toString().toFloat()
+                    sharedPreferences.saveTinggi(binding.etTinggi.text.toString(),this )
+                    sharedPreferences.saveUmur(binding.etUmur.text.toString(), this)
 
-                    val imageUri: String? = Preferences.getImageGallery(this)
+                    val imageUri: String? = sharedPreferences.getImageGallery(this)
                     val image: File? =
                         if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
 
@@ -113,7 +113,7 @@ class PreviewActivity : AppCompatActivity() {
 
                     handler.postDelayed({
                         Intent(this, ResultActivity::class.java).also {
-                            intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
+//                            intent.putExtra(DetailActivity.EXTRA_ID, "ini adalah id")
                             startActivity(it)
                             finish()
                         }
@@ -133,8 +133,8 @@ class PreviewActivity : AppCompatActivity() {
                 setTitle("Batalkan Proses")
                 setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
                 setPositiveButton("Ya") { _, _ ->
-                    Preferences.deleteImageCamera(this@PreviewActivity)
-                    Preferences.deleteImageGallery(this@PreviewActivity)
+                    sharedPreferences.deleteImageCamera(this@PreviewActivity)
+                    sharedPreferences.deleteImageGallery(this@PreviewActivity)
                     Intent(this@PreviewActivity, MainActivity::class.java).also {
                         startActivity(it)
                         finish()
@@ -189,8 +189,8 @@ class PreviewActivity : AppCompatActivity() {
             setTitle("Batalkan Proses")
             setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
             setPositiveButton("Ya") { _, _ ->
-                Preferences.deleteImageCamera(this@PreviewActivity)
-                Preferences.deleteImageGallery(this@PreviewActivity)
+                sharedPreferences.deleteImageCamera(this@PreviewActivity)
+                sharedPreferences.deleteImageGallery(this@PreviewActivity)
                 super.onBackPressed()
             }
             setNegativeButton("Tidak") { _, _ -> }

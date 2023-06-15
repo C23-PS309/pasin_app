@@ -1,5 +1,6 @@
 package com.example.pasin_app.ui.history
 
+import ViewModelFactoryItemRepo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -37,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -49,24 +51,26 @@ import androidx.compose.ui.unit.sp
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModel
 import coil.compose.AsyncImage
 import com.example.pasin_app.R
 import com.example.pasin_app.model.UserPreference
+import com.example.pasin_app.repository.ItemRepository
 import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.utils.ViewModelFactory
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+//private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class HistoryActivity : AppCompatActivity() {
 
-    private val historyViewModel by viewModels<HistoryViewModel>(
-        factoryProducer = {
-            ViewModelFactory(
-                context = this,
-                pref = UserPreference.getInstance(dataStore)
-            )
-        }
-    )
+//    private val historyViewModel by viewModels<HistoryViewModel>(
+//        factoryProducer = {
+//            ViewModelFactory(
+//                context = this,
+//                pref = UserPreference.getInstance(dataStore)
+//            )
+//        }
+//    )
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,7 +103,9 @@ class HistoryActivity : AppCompatActivity() {
                             },
                         )
                         HistoryPage(
-                            startDetailActivity = { historyId -> startDetailActivity(historyId) }
+                            startDetailActivity = { historyId ->
+                                startDetailActivity(historyId)
+                            }
                         )
                     }
                 }
@@ -110,19 +116,14 @@ class HistoryActivity : AppCompatActivity() {
     private fun startDetailActivity(historyId: String) {
         Log.d("HistoryActivity", "startDetailActivity: $historyId")
         val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EXTRA_ID, historyId)
+//        intent.putExtra(DetailActivity.EXTRA_ID, historyId)
         startActivity(intent)
     }
 }
 
 @Composable
 fun HistoryPage(
-    viewModel: HistoryViewModel = viewModel(
-        factory = ViewModelFactory(
-            context = LocalContext.current,
-            pref = UserPreference.getInstance(dataStore = LocalContext.current.dataStore)
-        )
-    ),
+    viewModel: HistoryViewModel = viewModel ( factory = ViewModelFactoryItemRepo (ItemRepository())),
     startDetailActivity: (String) -> Unit
 ) {
     val groupedItems = viewModel.groupedItems.collectAsState()
@@ -135,35 +136,75 @@ fun HistoryPage(
             verticalArrangement = Arrangement.spacedBy(5.dp),
             state = listState,
         ) {
-            groupedItems.value.forEach { (_, _) ->
-                items(groupedItems.value) { item ->
+            groupedItems.value.forEach { (_, items) ->
+                items(items, key = {it.historyID}) { item ->
                     HistoryContent(
-                        historyId = item.detailId,
-                        image = item.link_gambar,
-                        name = stringResource(id = R.string.app_name),
-                        ageValue = item.umur,
-                        hipValue = item.hipWidth,
-                        shoulderValue = item.shouldersWidth,
-                        heightValue = item.height,
-                        recommendationValue = item.result
+                        historyId = item.historyID,
+                        image = item.photo,
+                        name = item.title,
+                        ageValue = item.age,
+                        hipValue = item.measureData.hip,
+                        shoulderValue = item.measureData.shoulder,
+                        heightValue = item.measureData.height,
+                        recommendationValue = item.recommendation,
                     ) {
-
+                        startDetailActivity(item.historyID)
                     }
                 }
-
             }
         }
     }
 }
 
+//@Composable
+//fun HistoryPage(
+//    viewModel: HistoryViewModel = viewModel(
+//        factory = ViewModelFactory(
+//            context = LocalContext.current,
+//            pref = UserPreference.getInstance(dataStore = LocalContext.current.dataStore)
+//        )
+//    ),
+//    startDetailActivity: (String) -> Unit
+//) {
+//    val groupedItems = viewModel.groupedItems.collectAsState()
+//    Box(
+//        modifier = Modifier
+//            .padding(20.dp)
+//    ) {
+//        val listState = rememberLazyListState()
+//        LazyColumn(
+//            verticalArrangement = Arrangement.spacedBy(5.dp),
+//            state = listState,
+//        ) {
+//            groupedItems.value.forEach { (_, _) ->
+//                items(groupedItems.value) { item ->
+//                    HistoryContent(
+//                        historyId = item.detailId,
+//                        image = item.link_gambar,
+//                        name = stringResource(id = R.string.app_name),
+//                        ageValue = item.umur,
+//                        hipValue = item.hipWidth,
+//                        shoulderValue = item.shouldersWidth,
+//                        heightValue = item.height,
+//                        recommendationValue = item.result
+//                    ) {
+//
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
+//}
+
 @Composable
 fun HistoryContent(
     historyId: String,
-    image: String,
+    image: Int,
     name: String,
     ageValue: Int,
-    hipValue: Int,
-    shoulderValue: Int,
+    hipValue: Float,
+    shoulderValue: Float,
     heightValue: Int,
     recommendationValue: String,
     modifier: Modifier = Modifier,
@@ -390,11 +431,15 @@ fun HistoryContent(
             }
         }
         AsyncImage(
-            model = image, contentDescription = null, modifier = Modifier
-                .size(100.dp)
-                .clip(RoundedCornerShape(10.dp))
+            model = image,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(200.dp)
+                .padding(top = 10.dp, bottom = 10.dp, end = 10.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .background(colorResource(id = R.color.gray))
         )
-
     }
 }
 
@@ -409,11 +454,11 @@ fun PagePreview() {
 fun PreviewContent() {
     HistoryContent(
         historyId = "123",
-        image = "https://www.pajakonline.com/wp-content/uploads/2022/01/Ghozali.jpg",
+        image = R.drawable.contoh_foto,
         name = "Bob Sadino Hula Hula",
         ageValue = 65,
-        hipValue = 102,
-        shoulderValue = 23,
+        hipValue = 102f,
+        shoulderValue = 23f,
         heightValue = 160,
         recommendationValue = "XL",
         onItemClick = {}

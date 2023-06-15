@@ -4,13 +4,12 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.pasin_app.model.UserPreference
-import com.example.pasin_app.repository.ItemRepository
 import com.example.pasin_app.ui.auth.AuthenticationViewModel
 import com.example.pasin_app.ui.home.MainViewModel
 import com.example.pasin_app.ui.preview.PreviewViewModel
 import com.example.pasin_app.ui.result.ResultViewModel
 
-class ViewModelFactory(private val repository: ItemRepository? = null,
+class ViewModelFactory(
                        private val context: Context? = null,
                        private val pref: UserPreference? = null) : ViewModelProvider.NewInstanceFactory()
 {

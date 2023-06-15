@@ -2,9 +2,10 @@ package com.example.pasin_app.ui.result
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -14,9 +15,11 @@ import com.example.pasin_app.R
 import com.example.pasin_app.custom_view.ResultEditText
 import com.example.pasin_app.databinding.ActivityResultBinding
 import com.example.pasin_app.model.UserPreference
+import com.example.pasin_app.ui.detail.DetailActivity
 import com.example.pasin_app.ui.history.HistoryActivity
 import com.example.pasin_app.ui.home.MainActivity
 import com.example.pasin_app.utils.ViewModelFactory
+import com.example.pasin_app.utils.sharedPreferences
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class ResultActivity : AppCompatActivity() {
@@ -30,7 +33,13 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val selectedImage = sharedPreferences.getImageGallery(this)
+        binding.ivPreviewImage.setImageURI(Uri.parse(selectedImage))
+        Log.d("URI", "onCreate: $selectedImage")
         resultEditText = binding.resultEdit
+
+        binding.tvValueTinggi.text = sharedPreferences.getTinggi(this)
+        binding.tvValueUmur.text = sharedPreferences.getUmur(this)
 
         setupView()
 
@@ -55,6 +64,25 @@ class ResultActivity : AppCompatActivity() {
         }
 
         binding.btnHome.setOnClickListener {
+            val name = binding.resultEdit.text.toString()
+            val umur = binding.tvValueUmur.text.toString()
+            val pinggul = binding.tvValuePinggul.text.toString()
+            val bahu = binding.tvValueBahu.text.toString()
+            val tinggi = binding.tvValueTinggi.text.toString()
+
+            sharedPreferences.saveName(name, this)
+            sharedPreferences.saveUmur(umur, this)
+            sharedPreferences.savePinggul(pinggul, this)
+            sharedPreferences.saveBahu(bahu, this)
+            sharedPreferences.saveTinggi(tinggi, this)
+
+            Intent(this, MainActivity::class.java).apply {
+                putExtra(MainActivity.EXTRA_URI, selectedImage.toString())
+                Log.d("URI Select", "onCreate: $selectedImage")
+                startActivity(this)
+                finish()
+            }
+
             if (resultEditText.hasInput()) {
                 val alertDialogBuilder = AlertDialog.Builder(this)
                     .setTitle("Judul Pengukuran")

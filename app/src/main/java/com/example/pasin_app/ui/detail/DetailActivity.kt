@@ -18,7 +18,7 @@ class DetailActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private lateinit var resultViewModel: ResultViewModel
-    val id = intent.getStringExtra(ResultActivity.EXTRA_ID).toString()
+//    val id = intent.getStringExtra(ResultActivity.EXTRA_ID).toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +26,10 @@ class DetailActivity : AppCompatActivity() {
 
         setupView()
 
-//        binding.btnEdit.setOnClickListener {
-//            binding.btnEdit.animate().scaleX(1.5f).scaleY(1.5f).setDuration(200).start()
+//        resultViewModel.getUser().observe(this){
+//            val token = it.token
+//            resultViewModel.getResult(id, "Bearer $token")
 //        }
-
-        resultViewModel.getUser().observe(this){
-            val token = it.token
-            resultViewModel.getResult(id, "Bearer $token")
-        }
 
         binding.toolbarDetail.btnBack.setOnClickListener {
             finish()

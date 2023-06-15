@@ -48,7 +48,7 @@
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/foto_hasil" />
+                    tools:src="@drawable/foto_hasil" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="@string/tanggal_pengukuran"
+                android:text="Jumat, 16 Juni 2023 | 10:00"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
@@ -83,6 +83,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/shape_background_juduled"
                 android:inputType="text"
+                android:text="Nopal"
                 android:paddingStart="16dp"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
@@ -170,7 +171,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_valuePinggang"
+                        android:id="@+id/tv_valueUmur"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -437,6 +438,7 @@
                     android:layout_height="143dp"
                     android:layout_marginTop="15dp"
                     android:orientation="vertical"
+                    android:backgroundTint="@color/dark_blue"
                     android:padding="50dp"
                     app:cardCornerRadius="15dp"
                     app:layout_constraintStart_toStartOf="@+id/linearLayout6"
@@ -448,6 +450,7 @@
                         android:layout_height="63dp"
                         android:layout_gravity="center"
                         android:scaleType="fitCenter"
+                        android:src="@drawable/male"
                         app:tint="@color/black" />
                 </androidx.cardview.widget.CardView>
 

@@ -18,7 +18,7 @@ import com.example.pasin_app.R
 import com.example.pasin_app.databinding.ActivityPreviewWrongBinding
 import com.example.pasin_app.ui.camera.CameraActivity
 import com.example.pasin_app.ui.home.MainActivity
-import com.example.pasin_app.utils.Preferences
+import com.example.pasin_app.utils.sharedPreferences
 import com.example.pasin_app.utils.uriToFile
 import java.io.File
 
@@ -31,8 +31,8 @@ class PreviewWrongActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val selectedImage = Preferences.getImageGallery(this)
-        val selectedImageCamera = Preferences.getImageCamera(this)
+        val selectedImage = sharedPreferences.getImageGallery(this)
+        val selectedImageCamera = sharedPreferences.getImageCamera(this)
 
         if (selectedImage != null) {
             binding.ivPreview.setImageURI(Uri.parse(selectedImage))
@@ -48,12 +48,12 @@ class PreviewWrongActivity : AppCompatActivity() {
 
         binding.btnGallery.setOnClickListener {
             Toast.makeText(this, "Silahkan pilih gambar", Toast.LENGTH_SHORT).show()
-            Preferences.deleteImageGallery(this@PreviewWrongActivity)
+            sharedPreferences.deleteImageGallery(this@PreviewWrongActivity)
             startGallery()
         }
         binding.btnCamera.setOnClickListener {
             Toast.makeText(this, "Silahkan ambil foto", Toast.LENGTH_SHORT).show()
-            Preferences.deleteImageCamera(this@PreviewWrongActivity)
+            sharedPreferences.deleteImageCamera(this@PreviewWrongActivity)
             startCamera()
         }
 
@@ -62,8 +62,8 @@ class PreviewWrongActivity : AppCompatActivity() {
                 setTitle("Batalkan Proses")
                 setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
                 setPositiveButton("Ya") { _, _ ->
-                    Preferences.deleteImageCamera(this@PreviewWrongActivity)
-                    Preferences.deleteImageGallery(this@PreviewWrongActivity)
+                    sharedPreferences.deleteImageCamera(this@PreviewWrongActivity)
+                    sharedPreferences.deleteImageGallery(this@PreviewWrongActivity)
                     Intent(this@PreviewWrongActivity, MainActivity::class.java).also {
                         startActivity(it)
                         finish()
@@ -102,7 +102,7 @@ class PreviewWrongActivity : AppCompatActivity() {
             } as? File
 
             if (myFile != null) {
-                Preferences.saveImageCamera(myFile.path, this)
+                sharedPreferences.saveImageCamera(myFile.path, this)
             }
             startActivity(Intent(this, PreviewActivity::class.java))
             finish()
@@ -125,7 +125,7 @@ class PreviewWrongActivity : AppCompatActivity() {
             val selectedImg: Uri = it.data?.data as Uri
             val myFile = uriToFile(selectedImg, this)
             file = myFile
-            Preferences.saveImageGallery(selectedImg.toString(), this)
+            sharedPreferences.saveImageGallery(selectedImg.toString(), this)
             startActivity(Intent(this, PreviewActivity::class.java))
             finish()
         }
@@ -164,8 +164,8 @@ class PreviewWrongActivity : AppCompatActivity() {
             setTitle("Batalkan Proses")
             setMessage("Apakah Anda Yakin Ingin Membatalkan Proses?")
             setPositiveButton("Ya") { _, _ ->
-                Preferences.deleteImageCamera(this@PreviewWrongActivity)
-                Preferences.deleteImageGallery(this@PreviewWrongActivity)
+                sharedPreferences.deleteImageCamera(this@PreviewWrongActivity)
+                sharedPreferences.deleteImageGallery(this@PreviewWrongActivity)
                 super.onBackPressed()
             }
             setNegativeButton("Tidak") { _, _ -> }
