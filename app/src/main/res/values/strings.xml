@@ -52,10 +52,10 @@
     <string name="tvPanggul_txt">Pinggul</string>
     <string name="tvDada_txt">Dada</string>
     <string name="tvTinggi_txt">Tinggi</string>
-    <string name="contoh_pinggang">55</string>
-    <string name="contoh_pinggul">109</string>
+    <string name="contoh_pinggang">36.1</string>
+    <string name="contoh_pinggul">36.1</string>
     <string name="contoh_dada">55</string>
-    <string name="contoh_tinggi">172</string>
+    <string name="contoh_tinggi">185</string>
     <string name="rekomendasi_ukuran">Rekomendasi Ukuran Baju</string>
     <string name="contoh_ukuranBaju">XL</string>
     <string name="lihat_kriteria_foto">Lihat Kriteria Foto</string>
@@ -66,7 +66,7 @@
     <string name="xx_tahun">Tahun</string>
     <string name="valueUmur">21</string>
     <string name="tvUmur_txt">Umur</string>
-    <string name="contoh_umur">22</string>
+    <string name="contoh_umur">21</string>
     <string name="tvBahu_txt">Bahu</string>
     <string name="contoh_pose_txt">Contoh Pose Pengambilan Foto</string>
     <string name="kriteria_pengambilan_txt">Kriteria Pengambilan Foto</string>

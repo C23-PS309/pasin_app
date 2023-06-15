@@ -18,17 +18,20 @@ data class HistoryResponseItem(
 	val result: String? = null,
 
 	@field:SerializedName("umur")
-	val umur: Int? = null,
+	val umur: Float? = null,
 
 	@field:SerializedName("shoulders_width")
-	val shouldersWidth: Int? = null,
+	val shouldersWidth: Float? = null,
 
 	@field:SerializedName("hip_width")
-	val hipWidth: Int? = null,
+	val hipWidth: Float? = null,
+
+	@field:SerializedName("hip_width")
+	val link_gambar: String? = null,
 
 	@field:SerializedName("detail_id")
 	val detailId: String? = null,
 
 	@field:SerializedName("height")
-	val height: Int? = null
+	val height: Float? = null
 ) : Parcelable
