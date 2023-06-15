@@ -75,15 +75,17 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
+            android:backgroundTint="@color/yellow"
             android:background="@drawable/shape_button_yellow"
             android:text="@string/lihat_kriteria_foto"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etTinggi"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
@@ -97,6 +99,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etUmur"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
@@ -130,7 +133,7 @@
                     android:layout_width="140dp"
                     android:layout_height="35dp"
                     android:background="@drawable/shape_background_gender"
-                    android:backgroundTint="@color/blue_gender"
+                    android:backgroundTint="@color/gray"
                     android:contentDescription="@string/ivMale_txt"
                     android:elevation="8dp"
                     android:outlineProvider="background"
@@ -148,7 +151,7 @@
                     android:layout_width="140dp"
                     android:layout_height="35dp"
                     android:background="@drawable/shape_background_gender"
-                    android:backgroundTint="@color/pink"
+                    android:backgroundTint="@color/gray"
                     android:contentDescription="@string/ivFemale_txt"
                     android:elevation="8dp"
                     android:outlineProvider="background"

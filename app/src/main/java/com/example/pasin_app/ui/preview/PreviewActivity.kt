@@ -68,17 +68,33 @@ class PreviewActivity : AppCompatActivity() {
         }
 
         binding.btnProses.setOnClickListener {
+
             Log.d("Gender", genderState)
             val gender: Boolean = genderState == "Male"
-            umurUser = binding.etUmur.text.toString().toFloat()
-            tinggiUser = binding.etTinggi.text.toString().toFloat()
 
-            val imageUri: String? = Preferences.getImageGallery(this)
-            val image: File? = if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
+            when {
+                umurUser == 0f -> {
+                    binding.etUmur.error = "Umur tidak boleh kosong"
+                }
+                tinggiUser == 0f -> {
+                    binding.etTinggi.error = "Tinggi tidak boleh kosong"
+                }
+                genderState == "" -> {
+                    binding.imageButtonMale.backgroundTintList = resources.getColorStateList(R.color.gray)
+                    binding.imageButtonFemale.backgroundTintList = resources.getColorStateList(R.color.gray)
+                }else -> {
+                    umurUser = binding.etUmur.text.toString().toFloat()
+                    tinggiUser = binding.etTinggi.text.toString().toFloat()
 
-            previewViewModel.getUser().observe(this){
-                val token = it.token
-                previewViewModel.processData(image, umurUser, tinggiUser, gender, "Bearer $token", it.id)
+
+                    val imageUri: String? = Preferences.getImageGallery(this)
+                    val image: File? = if (imageUri != null) uriToFile(Uri.parse(imageUri), this) else null
+
+                    previewViewModel.getUser().observe(this){
+                        val token = it.token
+                        previewViewModel.processData(image, umurUser, tinggiUser, gender, "Bearer $token", it.id)
+                    }
+                }
             }
         }
 

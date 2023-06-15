@@ -60,7 +60,7 @@
     <string name="contoh_ukuranBaju">XL</string>
     <string name="lihat_kriteria_foto">Lihat Kriteria Foto</string>
     <string name="masukkan_umur">Masukkan umur</string>
-    <string name="masukkan_tinggi">Masukkan tinggi</string>
+    <string name="masukkan_tinggi">Masukkan tinggi (cm)</string>
     <string name="Tinggi">Tinggi</string>
     <string name="Umur">Umur</string>
     <string name="xx_tahun">Tahun</string>
