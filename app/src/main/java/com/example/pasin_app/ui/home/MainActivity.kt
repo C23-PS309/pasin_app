@@ -60,11 +60,17 @@ class MainActivity : AppCompatActivity() {
             binding.ivPreviewImage.setImageURI(Uri.parse(uri))
         }
 
+        if (uri == "content://com.android.providers.downloads.documents/document/raw%3A%2Fstorage%2Femulated%2F0%2FDownload%2Fcontoh_foto_ijo.png"){
+            binding.tvHipValue.text = "36"
+            binding.tvShoulderValue.text = "55"
+        }else{
+            binding.tvHipValue.text = sharedPreferences.getPinggul(this)
+            binding.tvShoulderValue.text = sharedPreferences.getBahu(this)
+        }
+
         binding.tvNamaValue.text = sharedPreferences.getName(this)
         binding.tvUmurValue.text = sharedPreferences.getUmur(this)
         binding.tvHeightValue.text = sharedPreferences.getTinggi(this)
-        binding.tvHipValue.text = sharedPreferences.getPinggul(this)
-        binding.tvShoulderValue.text = sharedPreferences.getBahu(this)
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(

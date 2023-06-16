@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/roboto"
-                android:text="@string/tanggal_pengukuran"
+                android:text="Jumat, 16 Juni 2023 | 10:00"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/nama_pengukuran"

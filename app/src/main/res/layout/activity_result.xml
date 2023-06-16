@@ -83,7 +83,6 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/shape_background_juduled"
                 android:inputType="text"
-                android:text="Nopal"
                 android:paddingStart="16dp"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
